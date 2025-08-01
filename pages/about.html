@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de ReservaFácil - Quiénes Somos | ReservaFácil</title>
+    <meta name="description"
+        content="Conoce la historia de ReservaFácil, nuestra misión y el equipo que está revolucionando la gestión de reservas para pequeños y medianos negocios.">
+    <meta name="keywords" content="ReservaFácil, historia, equipo, misión, visión, valores, empresa argentina">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Acerca de ReservaFácil - Quiénes Somos">
+    <meta property="og:description"
+        content="Conoce la historia de ReservaFácil y el equipo que está revolucionando la gestión de reservas.">
+    <meta property="og:image" content="../assets/images/og-about.jpg">
+    <meta property="og:url" content="https://reservafacil.com.ar/about">
+    <meta property="og:type" content="website">
+
+    <!-- CSS Variables y Estilos Base -->
+    <style>
+        :root {
+            /* Colores principales - EXACTOS del index.html */
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --secondary-color: #64748b;
+            --accent-color: #a855f7;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+
+            /* Colores de fondo */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-dark: #0f172a;
+
+            /* Colores de texto */
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            --text-inverse: #ffffff;
+
+            /* Bordes */
+            --border-color: #e2e8f0;
+            --border-light: #f1f5f9;
+
+            /* Sombras */
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+            /* Espaciado */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+
+            /* Border radius */
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+            --border-radius-xl: 16px;
+
+            /* Transiciones */
+            --transition: all 0.2s ease-in-out;
+            --transition-slow: all 0.3s ease-in-out;
+        }
+
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+        }
+
+        /* Contenedores */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .simple-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo i {
+            color: var(--primary-color);
+            font-size: 1.75rem;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary-color);
+            border-radius: 1px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .simple-button {
+            background: var(--primary-color);
+            color: var(--text-inverse);
+            border: none;
+            padding: 0.875rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .simple-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .button-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .button-outline:hover {
+            background: var(--primary-color);
+            color: var(--text-inverse);
+        }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><circle cx="20" cy="10" r="1" fill="%23e2e8f0" opacity="0.5"/><circle cx="80" cy="5" r="1" fill="%23e2e8f0" opacity="0.3"/><circle cx="50" cy="15" r="1" fill="%23e2e8f0" opacity="0.4"/></svg>') repeat;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-color);
+            color: var(--text-inverse);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            padding: 4rem 0;
+            background: var(--bg-primary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--bg-tertiary);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .mission-card {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .mission-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mission-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            color: var(--text-inverse);
+        }
+
+        .mission-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .mission-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* seguir aqui */
+
+        /* Story Section */
+        .story-section {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .story-text h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .story-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .story-highlights {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .story-highlights li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .story-highlights i {
+            color: var(--success-color);
+            font-size: 1.125rem;
+        }
+
+        .story-image {
+            position: relative;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 4rem 0;
+            background: var(--bg-primary);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--text-inverse);
+            font-weight: 600;
+        }
+
+        .team-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .team-description {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary-color);
+            color: var(--text-inverse);
+            transform: translateY(-2px);
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .value-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .value-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--accent-color);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            color: var(--text-inverse);
+        }
+
+        .value-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 0;
+            background: var(--primary-color);
+            color: var(--text-inverse);
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .button-white {
+            background: var(--bg-primary);
+            color: var(--primary-color);
+            border: none;
+        }
+
+        .button-white:hover {
+            background: var(--bg-secondary);
+            transform: translateY(-2px);
+        }
+
+        .button-outline-white {
+            background: transparent;
+            color: var(--text-inverse);
+            border: 2px solid var(--text-inverse);
+        }
+
+        .button-outline-white:hover {
+            background: var(--text-inverse);
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            color: var(--text-inverse);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-inverse);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--text-inverse);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .nav-buttons {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .story-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .story-image {
+                order: -1;
+            }
+
+            .mission-grid,
+            .team-grid,
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+
+            .container,
+            .simple-container {
+                padding: 0 0.75rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .mission-card,
+            .team-card,
+            .value-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-calendar-check"></i>
+                    ReservaFácil
+                </a>
+
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../index.html" class="nav-link">Inicio</a></li>
+                        <li><a href="features.html" class="nav-link">Funciones</a></li>
+                        <li><a href="pricing.html" class="nav-link">Precios</a></li>
+                        <li><a href="about.html" class="nav-link active">Nosotros</a></li>
+                        <li><a href="contact.html" class="nav-link">Contacto</a></li>
+                    </ul>
+
+                    <div class="nav-buttons">
+                        <a href="login.html" class="simple-button button-outline">Ingresar</a>
+                        <a href="register.html" class="simple-button">Registrarse</a>
+                    </div>
+
+                    <button class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-heart"></i>
+                    Nuestra Historia
+                </div>
+
+                <h1>Quiénes Somos</h1>
+                <p class="hero-subtitle">
+                    Somos un equipo apasionado de Buenos Aires que está revolucionando
+                    la forma en que los pequeños negocios gestionan sus reservas.
+                </p>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">2019</span>
+                        <div class="stat-label">Año de fundación</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5,000+</span>
+                        <div class="stat-label">Negocios confían en nosotros</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">150,000+</span>
+                        <div class="stat-label">Reservas gestionadas</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15</span>
+                        <div class="stat-label">Personas en el equipo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Nuestra Misión</span>
+                <h2 class="section-title">Democratizar la tecnología para todos los negocios</h2>
+                <p class="section-description">
+                    Creemos que todos los emprendedores merecen acceso a herramientas
+                    profesionales que los ayuden a crecer, sin importar el tamaño de su negocio.
+                </p>
+            </div>
+
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovación</h3>
+                    <p>
+                        Desarrollamos soluciones tecnológicas intuitivas que simplifican
+                        la gestión diaria de reservas y citas para cualquier tipo de negocio.
+                    </p>
+                </div>
+
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Accesibilidad</h3>
+                    <p>
+                        Hacemos que la tecnología avanzada sea accesible y asequible
+                        para pequeños y medianos empresarios de toda Argentina.
+                    </p>
+                </div>
+
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Crecimiento</h3>
+                    <p>
+                        Acompañamos a nuestros clientes en su crecimiento, brindando
+                        herramientas que escalan junto con sus negocios.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <---- seguir aqui -->
+
+    <!-- ARCHIVO: about.html NUEVO - PARTE 2 (BLOQUE 1/2): Secciones Completas -->
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="container">
+            <div class="story-content">
+                <div class="story-text">
+                    <h2>Nuestra Historia</h2>
+                    <p>
+                        ReservaFácil nació en 2019 cuando nuestro fundador, Martín Rodriguez,
+                        experimentó de primera mano las dificultades de gestionar reservas en
+                        su restaurante familiar. Las hojas de papel, las llamadas perdidas y
+                        la confusión constante lo llevaron a buscar una solución mejor.
+                    </p>
+                    <p>
+                        Lo que comenzó como una necesidad personal se convirtió en una misión:
+                        crear una plataforma que cualquier negocio pudiera usar, sin importar
+                        su tamaño o experiencia tecnológica. Desde entonces, hemos ayudado a
+                        miles de emprendedores a digitalizar y optimizar sus operaciones.
+                    </p>
+                    <ul class="story-highlights">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Fundada por emprendedores, para emprendedores
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            100% desarrollada en Argentina
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Enfocada en pequeños y medianos negocios
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Soporte local en español
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="story-image">
+                    <img src="../assets/images/about-story.jpg" alt="Equipo de ReservaFácil trabajando"
+                        onerror="this.style.background='linear-gradient(45deg, #2563eb, #a855f7)'; this.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:white;font-size:3rem;\'><i class=\'fas fa-users\'></i></div>'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Nuestro Equipo</span>
+                <h2 class="section-title">Las personas detrás de ReservaFácil</h2>
+                <p class="section-description">
+                    Un equipo diverso y apasionado que trabaja día a día para hacer
+                    que tu negocio tenga éxito.
+                </p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        MR
+                    </div>
+                    <h3>Martín Rodriguez</h3>
+                    <div class="team-role">CEO & Fundador</div>
+                    <p class="team-description">
+                        Emprendedor serial con más de 10 años en el sector gastronómico.
+                        Visionario detrás de ReservaFácil y apasionado por ayudar a otros negocios.
+                    </p>
+                    <div class="team-social">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        AG
+                    </div>
+                    <h3>Ana González</h3>
+                    <div class="team-role">CTO</div>
+                    <p class="team-description">
+                        Ingeniera en Sistemas con experiencia en startups tecnológicas.
+                        Lidera el desarrollo técnico y la innovación de la plataforma.
+                    </p>
+                    <div class="team-social">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        CL
+                    </div>
+                    <h3>Carlos López</h3>
+                    <div class="team-role">Director de Marketing</div>
+                    <p class="team-description">
+                        Especialista en marketing digital con foco en PyMEs. Se encarga
+                        de conectar ReservaFácil con los negocios que más lo necesitan.
+                    </p>
+                    <div class="team-social">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        LM
+                    </div>
+                    <h3>Lucía Martínez</h3>
+                    <div class="team-role">Head of Customer Success</div>
+                    <p class="team-description">
+                        Psicóloga especializada en experiencia del usuario. Asegura que
+                        cada cliente tenga una experiencia excepcional con ReservaFácil.
+                    </p>
+                    <div class="team-social">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        JS
+                    </div>
+                    <h3>Javier Silva</h3>
+                    <div class="team-role">Lead Developer</div>
+                    <p class="team-description">
+                        Desarrollador Full Stack con más de 8 años de experiencia.
+                        Arquitecto principal de la plataforma ReservaFácil.
+                    </p>
+                    <div class="team-social">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        MF
+                    </div>
+                    <h3>María Fernández</h3>
+                    <div class="team-role">UX/UI Designer</div>
+                    <p class="team-description">
+                        Diseñadora con background en psicología cognitiva. Crea interfaces
+                        intuitivas que cualquier persona puede usar sin complicaciones.
+                    </p>
+                    <div class="team-social">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Nuestros Valores</span>
+                <h2 class="section-title">Lo que nos guía cada día</h2>
+                <p class="section-description">
+                    Estos principios están en el corazón de todo lo que hacemos y
+                    definen cómo nos relacionamos con nuestros clientes y equipo.
+                </p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Transparencia</h3>
+                    <p>
+                        Creemos en la comunicación honesta y directa. Sin letra chica,
+                        sin sorpresas. Nuestros precios, términos y procesos son
+                        completamente transparentes.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Empatía</h3>
+                    <p>
+                        Entendemos los desafíos de ser emprendedor porque hemos estado
+                        ahí. Cada decisión la tomamos pensando en cómo impacta a
+                        nuestros clientes.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Simplicidad</h3>
+                    <p>
+                        La tecnología debe simplificar, no complicar. Diseñamos
+                        cada funcionalidad para que sea intuitiva y fácil de usar,
+                        sin sacrificar potencia.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Crecimiento Mutuo</h3>
+                    <p>
+                        Tu éxito es nuestro éxito. Trabajamos como socios de tu
+                        negocio, celebrando tus logros y aprendiendo de los desafíos.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Confiabilidad</h3>
+                    <p>
+                        Sabemos que dependes de nosotros para tu operación diaria.
+                        Por eso garantizamos 99.9% de uptime y soporte cuando lo necesites.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sostenibilidad</h3>
+                    <p>
+                        Construimos para el largo plazo. Tanto nuestro negocio como
+                        nuestro impacto ambiental están diseñados para ser sostenibles.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="simple-container">
+            <div class="section-header">
+                <span class="section-badge">Nuestra Evolución</span>
+                <h2 class="section-title">Hitos importantes</h2>
+                <p class="section-description">
+                    Un recorrido por los momentos clave que nos trajeron hasta aquí.
+                </p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2019</div>
+                    <div class="timeline-content">
+                        <h3>Fundación</h3>
+                        <p>Martín Rodriguez funda ReservaFácil después de experimentar problemas
+                            de gestión en su restaurante familiar en Palermo.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2020</div>
+                    <div class="timeline-content">
+                        <h3>Primeros 100 clientes</h3>
+                        <p>Durante la pandemia, ayudamos a restaurantes y salones de belleza
+                            a adaptarse a las nuevas regulaciones con reservas controladas.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-content">
+                        <h3>Expansión del equipo</h3>
+                        <p>Incorporamos a Ana González como CTO y duplicamos el equipo de
+                            desarrollo para mejorar la plataforma.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2022</div>
+                    <div class="timeline-content">
+                        <h3>App móvil</h3>
+                        <p>Lanzamos la aplicación móvil para iOS y Android, permitiendo
+                            gestionar reservas desde cualquier lugar.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-content">
+                        <h3>1,000 negocios</h3>
+                        <p>Alcanzamos el hito de 1,000 negocios activos y expandimos
+                            nuestro soporte a toda Argentina.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-content">
+                        <h3>Inteligencia Artificial</h3>
+                        <p>Integramos IA para optimización automática de horarios y
+                            predicción de demanda, revolucionando la industria.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item active">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content">
+                        <h3>5,000+ negocios</h3>
+                        <p>Actualmente servimos a más de 5,000 negocios y procesamos
+                            over 150,000 reservas mensuales en toda Argentina.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Nuestro Impacto</span>
+                <h2 class="section-title">Números que nos enorgullecen</h2>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="stat-number" data-target="5247">0</div>
+                    <div class="stat-label">Negocios activos</div>
+                    <div class="stat-description">En toda Argentina</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-number" data-target="157890">0</div>
+                    <div class="stat-label">Reservas este mes</div>
+                    <div class="stat-description">Y creciendo cada día</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-number" data-target="2340">0</div>
+                    <div class="stat-label">Horas ahorradas</div>
+                    <div class="stat-description">Por día en gestión manual</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <div class="stat-number" data-target="96">0</div>
+                    <div class="stat-label">% Satisfacción</div>
+                    <div class="stat-description">De nuestros clientes</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-number" data-target="40">0</div>
+                    <div class="stat-label">% Aumento promedio</div>
+                    <div class="stat-description">En reservas de clientes</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">Minutos promedio</div>
+                    <div class="stat-description">Tiempo de respuesta soporte</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <---- seguir aqui -->
+
+    <!-- ARCHIVO: about.html NUEVO - PARTE 2 (BLOQUE 2/2): CTA, Footer, CSS y JavaScript Final -->
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¿Listo para unirte a ReservaFácil?</h2>
+                <p>
+                    Forma parte de la comunidad de emprendedores que ya transformaron
+                    su manera de gestionar reservas. Comienza tu prueba gratuita hoy.
+                </p>
+                <div class="cta-buttons">
+                    <a href="register.html" class="simple-button button-white">
+                        <i class="fas fa-rocket"></i>
+                        Empezar Gratis
+                    </a>
+                    <a href="contact.html" class="simple-button button-outline-white">
+                        <i class="fas fa-comments"></i>
+                        Hablar con Ventas
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>
+                        <i class="fas fa-calendar-check"></i>
+                        ReservaFácil
+                    </h3>
+                    <p>
+                        La plataforma líder en Argentina para gestión de reservas.
+                        Ayudamos a pequeños y medianos negocios a digitalizar y
+                        optimizar su operación.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/reservafacil" target="_blank">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://instagram.com/reservafacil" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/reservafacil" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com/reservafacil" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Producto</h3>
+                    <ul class="footer-links">
+                        <li><a href="features.html">Funciones</a></li>
+                        <li><a href="pricing.html">Precios</a></li>
+                        <li><a href="integrations.html">Integraciones</a></li>
+                        <li><a href="mobile-app.html">App Móvil</a></li>
+                        <li><a href="api.html">API</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Empresa</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">Nosotros</a></li>
+                        <li><a href="careers.html">Trabajá con nosotros</a></li>
+                        <li><a href="press.html">Prensa</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Soporte</h3>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Centro de Ayuda</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                        <li><a href="faq.html">Preguntas Frecuentes</a></li>
+                        <li><a href="tutorials.html">Tutoriales</a></li>
+                        <li><a href="status.html">Estado del Servicio</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="terms.html">Términos y Condiciones</a></li>
+                        <li><a href="privacy.html">Política de Privacidad</a></li>
+                        <li><a href="cookies.html">Política de Cookies</a></li>
+                        <li><a href="security.html">Seguridad</a></li>
+                        <li><a href="compliance.html">Cumplimiento</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 ReservaFácil. Todos los derechos reservados. Hecho con ❤️ en Buenos Aires, Argentina.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CSS Adicional para nuevas secciones -->
+    <style>
+        /* Timeline Section */
+        .timeline-section {
+            padding: 4rem 0;
+            background: var(--bg-primary);
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            text-align: right;
+        }
+
+        .timeline-date {
+            width: 100px;
+            height: 100px;
+            background: var(--primary-color);
+            color: var(--text-inverse);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+            position: relative;
+            z-index: 2;
+            flex-shrink: 0;
+        }
+
+        .timeline-item.active .timeline-date {
+            background: var(--accent-color);
+            transform: scale(1.1);
+            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.2);
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 0 2rem;
+            max-width: 400px;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Statistics Section */
+        .stats-section {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            color: var(--text-inverse);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-description {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Design for new sections */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content {
+                text-align: left;
+            }
+
+            .timeline-date {
+                width: 60px;
+                height: 60px;
+                font-size: 0.875rem;
+                margin-right: 1rem;
+            }
+
+            .timeline-content {
+                padding: 0;
+                max-width: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.6s ease;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+
+    <!-- JavaScript -->
+    <script>
+        // Intersection Observer para animaciones
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Aplicar animaciones a elementos
+        document.addEventListener('DOMContentLoaded', function () {
+            // Elementos que se animan al entrar en viewport
+            const fadeElements = document.querySelectorAll('.mission-card, .team-card, .value-card, .stat-card');
+            fadeElements.forEach((el, index) => {
+                el.classList.add('fade-in');
+                el.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(el);
+            });
+
+            // Timeline items
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                if (index % 2 === 0) {
+                    item.classList.add('slide-in-left');
+                } else {
+                    item.classList.add('slide-in-right');
+                }
+                item.style.transitionDelay = `${index * 0.2}s`;
+                observer.observe(item);
+            });
+
+            // Stats counter animation
+            const statsNumbers = document.querySelectorAll('.stat-number');
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            statsNumbers.forEach(stat => {
+                statsObserver.observe(stat);
+            });
+        });
+
+        // Animación de contadores
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+
+                // Formatear números grandes
+                if (target >= 1000) {
+                    element.textContent = Math.floor(current).toLocaleString();
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+
+                // Agregar % si es el caso
+                if (element.getAttribute('data-target') === '96' || element.getAttribute('data-target') === '40') {
+                    element.textContent += '%';
+                }
+            }, 16);
+        }
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const navButtons = document.querySelector('.nav-buttons');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function () {
+                const isActive = navLinks.classList.contains('active');
+
+                if (isActive) {
+                    navLinks.classList.remove('active');
+                    navButtons.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                } else {
+                    navLinks.classList.add('active');
+                    navButtons.classList.add('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+                }
+            });
+        }
+
+        // Smooth scroll para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect para hero
+        window.addEventListener('scroll', function () {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            if (parallax) {
+                const speed = scrolled * 0.5;
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+
+        // Lazy loading para imágenes
+        const images = document.querySelectorAll('img[data-src]');
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => {
+            imageObserver.observe(img);
+        });
+
+        // Función para manejar errores de imágenes
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function () {
+                if (!this.dataset.fallbackApplied) {
+                    this.dataset.fallbackApplied = 'true';
+                    this.style.display = 'none';
+
+                    // Crear elemento de fallback
+                    const fallback = document.createElement('div');
+                    fallback.className = 'image-fallback';
+                    fallback.style.cssText = `
+                        width: 100%;
+                        height: 400px;
+                        background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 3rem;
+                        border-radius: var(--border-radius-lg);
+                    `;
+                    fallback.innerHTML = '<i class="fas fa-image"></i>';
+
+                    this.parentNode.insertBefore(fallback, this);
+                }
+            });
+        });
+
+        // Analytics tracking (simulado)
+        function trackEvent(eventName, properties = {}) {
+            console.log('Analytics Event:', eventName, properties);
+            // Aquí iría la integración con Google Analytics, Mixpanel, etc.
+        }
+
+        // Track clicks en CTAs
+        document.querySelectorAll('.simple-button').forEach(button => {
+            button.addEventListener('click', function () {
+                trackEvent('CTA Click', {
+                    text: this.textContent.trim(),
+                    url: this.href || 'button',
+                    location: 'about_page'
+                });
+            });
+        });
+
+        // Performance monitoring
+        window.addEventListener('load', function () {
+            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+            console.log('Page load time:', loadTime + 'ms');
+
+            trackEvent('Page Load', {
+                loadTime: loadTime,
+                page: 'about'
+            });
+        });
+    </script>
+</body>
+
+</html>

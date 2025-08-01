@@ -1,0 +1,2249 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Planes de suscripción ReservaFácil - Elige el plan perfecto para tu negocio">
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Planes y Pagos - ReservaFácil</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- MercadoPago SDK -->
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-blue: #4F7AFF;
+            --primary-blue-dark: #3B5ECC;
+            --primary-blue-light: #6B91FF;
+            --success-green: #10B981;
+            --warning-yellow: #F59E0B;
+            --danger-red: #EF4444;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-muted: #9CA3AF;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F9FAFB;
+            --bg-tertiary: #F3F4F6;
+            --border-color: #E5E7EB;
+            --border-light: #F3F4F6;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --radius-lg: 12px;
+            --gradient-primary: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            --gradient-success: linear-gradient(135deg, var(--success-green), #059669);
+            --gradient-premium: linear-gradient(135deg, #8B5CF6, #7C3AED);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-blue);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .billing-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            background: var(--bg-primary);
+            padding: 8px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .toggle-option {
+            flex: 1;
+            padding: 12px 24px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .toggle-option.active {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .toggle-option:not(.active) {
+            color: var(--text-secondary);
+        }
+
+        .toggle-option:not(.active):hover {
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--success-green);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+
+        /* Plans Grid */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .plan-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--border-color);
+            padding: 32px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .plan-card.popular {
+            border-color: var(--primary-blue);
+            transform: scale(1.05);
+        }
+
+        .plan-card.popular::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            right: -10px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 6px 20px;
+            font-size: 12px;
+            font-weight: 700;
+            transform: rotate(10deg);
+            border-radius: 4px;
+        }
+
+        .plan-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+        }
+
+        .plan-icon.trial {
+            background: var(--gradient-success);
+        }
+
+        .plan-icon.basic {
+            background: var(--gradient-primary);
+        }
+
+        .plan-icon.premium {
+            background: var(--gradient-premium);
+        }
+
+        .plan-icon.enterprise {
+            background: linear-gradient(135deg, #1F2937, #374151);
+        }
+
+        .plan-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .plan-description {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-size: 16px;
+        }
+
+        .plan-price {
+            margin-bottom: 32px;
+        }
+
+        .price-amount {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .price-currency {
+            font-size: 24px;
+            margin-top: -10px;
+        }
+
+        .price-period {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .price-original {
+            font-size: 16px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-top: 8px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .feature-icon.included {
+            background: var(--success-green);
+            color: white;
+        }
+
+        .feature-icon.not-included {
+            background: var(--border-color);
+            color: var(--text-muted);
+        }
+
+        .feature-text {
+            color: var(--text-primary);
+        }
+
+        .feature-text.not-included {
+            color: var(--text-muted);
+        }
+
+        .plan-cta {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: var(--radius);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .plan-cta.trial {
+            background: var(--gradient-success);
+            color: white;
+        }
+
+        .plan-cta.basic {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .plan-cta.premium {
+            background: var(--gradient-premium);
+            color: white;
+        }
+
+        .plan-cta.enterprise {
+            background: linear-gradient(135deg, #1F2937, #374151);
+            color: white;
+        }
+
+        .plan-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .plan-cta:disabled {
+            background: var(--border-color);
+            color: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Payment Section */
+        .payment-section {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin-bottom: 60px;
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .payment-section.active {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .payment-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .payment-subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .payment-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .order-summary {
+            background: var(--bg-secondary);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+        }
+
+        .summary-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .selected-plan {
+            background: var(--bg-primary);
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+
+        .plan-summary {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .plan-summary-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .plan-summary-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .plan-summary-info p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .price-breakdown {
+            border-top: 1px solid var(--border-light);
+            padding-top: 16px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .price-label {
+            color: var(--text-secondary);
+        }
+
+        .price-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .price-total {
+            border-top: 1px solid var(--border-light);
+            padding-top: 16px;
+            margin-top: 16px;
+        }
+
+        .price-total .price-label {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 18px;
+        }
+
+        .price-total .price-value {
+            font-weight: 800;
+            color: var(--primary-blue);
+            font-size: 24px;
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .payment-method {
+            padding: 16px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary-blue);
+        }
+
+        .payment-method.selected {
+            border-color: var(--primary-blue);
+            background: rgba(79, 122, 255, 0.05);
+        }
+
+        .payment-method-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .payment-method-info h4 {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .payment-method-info p {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .payment-form {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(79, 122, 255, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
+        }
+
+        .security-info {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid var(--success-green);
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .security-icon {
+            color: var(--success-green);
+            font-size: 20px;
+        }
+
+        .security-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .pay-button {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 16px;
+        }
+
+        .pay-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pay-button:disabled {
+            background: var(--border-color);
+            color: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .payment-guarantee {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Success Section */
+        .success-section {
+            text-align: center;
+            padding: 60px 40px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .success-section.active {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: white;
+            margin: 0 auto 24px;
+        }
+
+        .success-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .success-subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+
+        .success-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 24px 16px;
+            }
+
+            .page-title {
+                font-size: 36px;
+            }
+
+            .page-subtitle {
+                font-size: 18px;
+            }
+
+            .plans-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .plan-card.popular {
+                transform: none;
+            }
+
+            .payment-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .billing-toggle {
+                flex-direction: column;
+                max-width: 200px;
+            }
+
+            .success-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.3s ease;
+        }
+
+        /* Loading States */
+        .loading {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Tooltips */
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text-primary);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 1000;
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">📋</div>
+                <span class="logo-text">ReservaFácil</span>
+            </a>
+
+            <div class="header-actions">
+                <a href="/pages/login.html" class="btn btn-outline">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Iniciar Sesión
+                </a>
+                <a href="/pages/dashboard.html" class="btn btn-primary">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Panel de Control
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header fade-in">
+            <h1 class="page-title">Planes y Precios</h1>
+            <p class="page-subtitle">
+                Elige el plan perfecto para tu negocio. Comienza con 30 días gratis y actualiza cuando necesites más
+                funciones.
+            </p>
+
+            <!-- Billing Toggle -->
+            <div class="billing-toggle">
+                <div class="toggle-option active" data-billing="monthly">
+                    Mensual
+                </div>
+                <div class="toggle-option" data-billing="yearly">
+                    Anual
+                    <span class="discount-badge">-20%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Plans Grid -->
+        <div class="plans-grid fade-in" id="plans-grid">
+            <!-- Trial Plan -->
+            <div class="plan-card" data-plan="trial">
+                <div class="plan-icon trial">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h3 class="plan-name">Prueba Gratis</h3>
+                <p class="plan-description">
+                    Perfecto para conocer la plataforma y comenzar a gestionar reservas básicas.
+                </p>
+
+                <div class="plan-price">
+                    <div class="price-amount">
+                        <span class="price-currency">$</span>0
+                    </div>
+                    <div class="price-period">por 30 días</div>
+                </div>
+
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Hasta 5 servicios</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">50 reservas por mes</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Panel básico</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Notificaciones email</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon not-included"><i class="fas fa-times"></i></span>
+                        <span class="feature-text not-included">Reportes avanzados</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon not-included"><i class="fas fa-times"></i></span>
+                        <span class="feature-text not-included">Soporte prioritario</span>
+                    </li>
+                </ul>
+
+                <button class="plan-cta trial" onclick="selectPlan('trial')">
+                    Comenzar Gratis
+                </button>
+            </div>
+
+            <!-- Basic Plan -->
+            <div class="plan-card" data-plan="basic">
+                <div class="plan-icon basic">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3 class="plan-name">Básico</h3>
+                <p class="plan-description">
+                    Ideal para pequeños negocios que necesitan funcionalidades esenciales de reservas.
+                </p>
+
+                <div class="plan-price">
+                    <div class="price-amount">
+                        <span class="price-currency">$</span><span class="price-value" data-monthly="2500"
+                            data-yearly="2000">2.500</span>
+                    </div>
+                    <div class="price-period">por mes</div>
+                    <div class="price-original" style="display: none;">$3.125</div>
+                </div>
+
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Hasta 10 servicios</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">200 reservas por mes</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Panel completo</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Todas las notificaciones</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Reportes básicos</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon not-included"><i class="fas fa-times"></i></span>
+                        <span class="feature-text not-included">Personalización marca</span>
+                    </li>
+                </ul>
+
+                <!-- Continuación desde la línea cortada -->
+                <button class="plan-cta basic" onclick="selectPlan('basic')">
+                    Elegir Básico
+                </button>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="plan-card popular" data-plan="premium">
+                <div class="popular-badge">Más Popular</div>
+                <div class="plan-icon premium">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h3 class="plan-name">Premium</h3>
+                <p class="plan-description">
+                    Para negocios en crecimiento que necesitan funciones avanzadas y personalización.
+                </p>
+
+                <div class="plan-price">
+                    <div class="price-amount">
+                        <span class="price-currency">$</span><span class="price-value" data-monthly="4500"
+                            data-yearly="3600">4.500</span>
+                    </div>
+                    <div class="price-period">por mes</div>
+                    <div class="price-original" style="display: none;">$5.625</div>
+                </div>
+
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Hasta 50 servicios</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">1000 reservas por mes</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Panel avanzado</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Reportes completos</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Personalización marca</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Soporte prioritario</span>
+                    </li>
+                </ul>
+
+                <button class="plan-cta premium" onclick="selectPlan('premium')">
+                    Elegir Premium
+                </button>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="plan-card" data-plan="enterprise">
+                <div class="plan-icon enterprise">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3 class="plan-name">Empresarial</h3>
+                <p class="plan-description">
+                    Solución completa para grandes empresas con múltiples ubicaciones y necesidades específicas.
+                </p>
+
+                <div class="plan-price">
+                    <div class="price-amount">
+                        <span class="price-currency">$</span><span class="price-value" data-monthly="8500"
+                            data-yearly="6800">8.500</span>
+                    </div>
+                    <div class="price-period">por mes</div>
+                    <div class="price-original" style="display: none;">$10.625</div>
+                </div>
+
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Servicios ilimitados</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Reservas ilimitadas</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Multi-ubicación</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">API personalizada</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">White label</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon included"><i class="fas fa-check"></i></span>
+                        <span class="feature-text">Soporte dedicado</span>
+                    </li>
+                </ul>
+
+                <button class="plan-cta enterprise" onclick="selectPlan('enterprise')">
+                    Contactar Ventas
+                </button>
+            </div>
+        </div>
+
+        <!-- Payment Section -->
+        <div class="payment-section" id="payment-section">
+            <div class="payment-header">
+                <h2 class="payment-title">Completar Pago</h2>
+                <p class="payment-subtitle">
+                    Información segura y encriptada. Cancela cuando quieras.
+                </p>
+            </div>
+
+            <div class="payment-content">
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h3 class="summary-title">Resumen del Pedido</h3>
+
+                    <div class="selected-plan" id="selected-plan-summary">
+                        <div class="plan-summary">
+                            <div class="plan-summary-icon basic" id="plan-summary-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="plan-summary-info">
+                                <h3 id="plan-summary-name">Plan Básico</h3>
+                                <p id="plan-summary-description">Facturación mensual</p>
+                            </div>
+                        </div>
+
+                        <div class="price-breakdown">
+                            <div class="price-row">
+                                <span class="price-label">Subtotal:</span>
+                                <span class="price-value" id="price-subtotal">$2.500</span>
+                            </div>
+                            <div class="price-row">
+                                <span class="price-label">Descuento:</span>
+                                <span class="price-value" id="price-discount">-$0</span>
+                            </div>
+                            <div class="price-row">
+                                <span class="price-label">IVA (21%):</span>
+                                <span class="price-value" id="price-tax">$525</span>
+                            </div>
+                            <div class="price-row price-total">
+                                <span class="price-label">Total:</span>
+                                <span class="price-value" id="price-total">$3.025</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="payment-methods">
+                        <div class="payment-method selected" data-method="mercadopago">
+                            <div class="payment-method-icon" style="background: #00B3EA; color: white;">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="payment-method-info">
+                                <h4>MercadoPago</h4>
+                                <p>Tarjetas de crédito y débito</p>
+                            </div>
+                        </div>
+
+                        <div class="payment-method" data-method="transfer">
+                            <div class="payment-method-icon" style="background: #28A745; color: white;">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="payment-method-info">
+                                <h4>Transferencia Bancaria</h4>
+                                <p>CBU/CVU - Acreditación inmediata</p>
+                            </div>
+                        </div>
+
+                        <div class="payment-method" data-method="qr">
+                            <div class="payment-method-icon" style="background: #8B5CF6; color: white;">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <div class="payment-method-info">
+                                <h4>Código QR</h4>
+                                <p>Pago rápido con tu app favorita</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="security-info">
+                        <i class="fas fa-shield-alt security-icon"></i>
+                        <div class="security-text">
+                            <strong>Pago 100% seguro</strong><br>
+                            Tus datos están protegidos con encriptación SSL de 256 bits
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Form -->
+                <div class="payment-form">
+                    <!-- MercadoPago Form -->
+                    <div id="mercadopago-form" class="payment-form-content">
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" id="email" placeholder="tu@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Número de tarjeta</label>
+                            <input type="text" class="form-input" id="cardNumber" placeholder="1234 5678 9012 3456"
+                                maxlength="19" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Vencimiento</label>
+                                <input type="text" class="form-input" id="expirationDate" placeholder="MM/AA"
+                                    maxlength="5" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label tooltip" data-tooltip="Código de 3 dígitos en el reverso">
+                                    CVV
+                                </label>
+                                <input type="text" class="form-input" id="securityCode" placeholder="123" maxlength="4"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Nombre del titular</label>
+                            <input type="text" class="form-input" id="cardholderName"
+                                placeholder="Como aparece en la tarjeta" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">DNI del titular</label>
+                            <input type="text" class="form-input" id="identificationType" placeholder="12345678"
+                                maxlength="8" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Cuotas</label>
+                            <select class="form-input" id="installments">
+                                <option value="1">1 cuota sin interés</option>
+                                <option value="3">3 cuotas sin interés</option>
+                                <option value="6">6 cuotas sin interés</option>
+                                <option value="12">12 cuotas con interés</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Transfer Form -->
+                    <div id="transfer-form" class="payment-form-content" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">Email para confirmación</label>
+                            <input type="email" class="form-input" placeholder="tu@email.com" required>
+                        </div>
+
+                        <div
+                            style="background: var(--bg-secondary); padding: 20px; border-radius: var(--radius); margin: 20px 0;">
+                            <h4 style="margin-bottom: 16px;">Datos para transferencia:</h4>
+                            <div style="font-family: monospace; line-height: 1.8;">
+                                <strong>Banco:</strong> Banco Galicia<br>
+                                <strong>CBU:</strong> 0070055430004001234567<br>
+                                <strong>Alias:</strong> RESERVA.FACIL.PAGOS<br>
+                                <strong>Titular:</strong> ReservaFácil S.A.S.<br>
+                                <strong>CUIT:</strong> 30-12345678-9
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Comprobante de transferencia</label>
+                            <input type="file" class="form-input" accept="image/*,.pdf" required>
+                        </div>
+                    </div>
+
+                    <!-- QR Form -->
+                    <div id="qr-form" class="payment-form-content" style="display: none;">
+                        <div style="text-align: center; padding: 40px;">
+                            <div id="qr-code"
+                                style="background: var(--bg-secondary); width: 200px; height: 200px; margin: 0 auto 20px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 48px; color: var(--text-muted);">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                                Escanea el código QR con tu app de MercadoPago, Ualá, o cualquier billetera digital
+                            </p>
+                            <div
+                                style="background: rgba(245, 158, 11, 0.1); border: 1px solid var(--warning-yellow); border-radius: var(--radius); padding: 16px; color: var(--warning-yellow);">
+                                <i class="fas fa-clock"></i> El código QR expira en 10 minutos
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="pay-button" id="pay-button" onclick="processPayment()">
+                        <span class="pay-text">Pagar $3.025</span>
+                        <span class="loading" style="display: none;">
+                            <span class="spinner"></span>
+                            Procesando...
+                        </span>
+                    </button>
+
+                    <div class="payment-guarantee">
+                        <i class="fas fa-shield-alt"></i>
+                        Garantía de devolución de 7 días • Cancela cuando quieras
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Section -->
+        <div class="success-section" id="success-section">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2 class="success-title">¡Pago Exitoso!</h2>
+            <p class="success-subtitle">
+                Tu suscripción ha sido activada. Ya puedes acceder a todas las funciones de tu plan.
+            </p>
+
+            <div class="success-actions">
+                <a href="/pages/dashboard.html" class="btn btn-primary">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Ir al Panel de Control
+                </a>
+                <a href="/pages/setup.html" class="btn btn-outline">
+                    <i class="fas fa-cog"></i>
+                    Configurar mi Negocio
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+        // Payment Manager
+        class PaymentManager {
+            constructor() {
+                this.selectedPlan = null;
+                this.selectedMethod = 'mercadopago';
+                this.isProcessing = false;
+                this.billingCycle = 'monthly';
+                this.mercadopago = null;
+                this.init();
+            }
+
+            init() {
+                this.initMercadoPago();
+                this.bindEvents();
+                this.updatePricing();
+            }
+
+            async initMercadoPago() {
+                try {
+                    // Inicializar MercadoPago SDK
+                    const mp = new MercadoPago('TEST-your-public-key-here', {
+                        locale: 'es-AR'
+                    });
+                    this.mercadopago = mp;
+                } catch (error) {
+                    console.error('Error inicializando MercadoPago:', error);
+                }
+            }
+
+            bindEvents() {
+                // Billing toggle
+                document.querySelectorAll('.toggle-option').forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        this.toggleBilling(e.target.dataset.billing);
+                    });
+                });
+
+                // Payment methods
+                document.querySelectorAll('.payment-method').forEach(method => {
+                    method.addEventListener('click', (e) => {
+                        this.selectPaymentMethod(e.currentTarget.dataset.method);
+                    });
+                });
+
+                // Form validation
+                document.querySelectorAll('.form-input').forEach(input => {
+                    input.addEventListener('input', (e) => {
+                        this.validateField(e.target);
+                    });
+                });
+
+                // Card number formatting
+                const cardNumberInput = document.getElementById('cardNumber');
+                if (cardNumberInput) {
+                    cardNumberInput.addEventListener('input', (e) => {
+                        this.formatCardNumber(e.target);
+                    });
+                }
+
+                // Expiration date formatting
+                const expirationInput = document.getElementById('expirationDate');
+                if (expirationInput) {
+                    expirationInput.addEventListener('input', (e) => {
+                        this.formatExpirationDate(e.target);
+                    });
+                }
+            }
+
+            toggleBilling(cycle) {
+                this.billingCycle = cycle;
+
+                // Update UI
+                document.querySelectorAll('.toggle-option').forEach(option => {
+                    option.classList.remove('active');
+                });
+                document.querySelector(`[data-billing="${cycle}"]`).classList.add('active');
+
+                this.updatePricing();
+            }
+
+            updatePricing() {
+                const isYearly = this.billingCycle === 'yearly';
+
+                document.querySelectorAll('.price-value').forEach(priceElement => {
+                    const monthly = parseInt(priceElement.dataset.monthly);
+                    const yearly = parseInt(priceElement.dataset.yearly);
+                    const price = isYearly ? yearly : monthly;
+
+                    priceElement.textContent = price.toLocaleString();
+                });
+
+                // Show/hide original prices
+                document.querySelectorAll('.price-original').forEach(originalPrice => {
+                    const card = originalPrice.closest('.plan-card');
+                    const priceValue = card.querySelector('.price-value');
+                    const monthly = parseInt(priceValue.dataset.monthly);
+
+                    if (isYearly && monthly) {
+                        originalPrice.textContent = `$${Math.round(monthly * 1.25).toLocaleString()}`;
+                        originalPrice.style.display = 'block';
+                    } else {
+                        originalPrice.style.display = 'none';
+                    }
+                });
+
+                // Update period text
+                const periodText = isYearly ? 'por año' : 'por mes';
+                document.querySelectorAll('.price-period').forEach(period => {
+                    if (!period.textContent.includes('días')) {
+                        period.textContent = periodText;
+                    }
+                });
+            }
+
+            selectPlan(planType) {
+                this.selectedPlan = planType;
+
+                if (planType === 'trial') {
+                    // Redirect to registration with trial
+                    window.location.href = '/pages/register.html?plan=trial';
+                    return;
+                }
+
+                if (planType === 'enterprise') {
+                    // Open contact form
+                    this.openContactForm();
+                    return;
+                }
+
+                // Show payment section
+                this.showPaymentSection(planType);
+            }
+
+            showPaymentSection(planType) {
+                const plans = {
+                    basic: {
+                        name: 'Plan Básico',
+                        icon: 'fas fa-rocket',
+                        iconClass: 'basic',
+                        monthly: 2500,
+                        yearly: 2000
+                    },
+                    premium: {
+                        name: 'Plan Premium',
+                        icon: 'fas fa-crown',
+                        iconClass: 'premium',
+                        monthly: 4500,
+                        yearly: 3600
+                    }
+                };
+
+                const plan = plans[planType];
+                const price = this.billingCycle === 'yearly' ? plan.yearly : plan.monthly;
+                const tax = Math.round(price * 0.21);
+                const total = price + tax;
+
+                // Update summary
+                document.getElementById('plan-summary-icon').className = `plan-summary-icon ${plan.iconClass}`;
+                document.getElementById('plan-summary-icon').innerHTML = `<i class="${plan.icon}"></i>`;
+                document.getElementById('plan-summary-name').textContent = plan.name;
+                document.getElementById('plan-summary-description').textContent =
+                    `Facturación ${this.billingCycle === 'yearly' ? 'anual' : 'mensual'}`;
+
+                document.getElementById('price-subtotal').textContent = `$${price.toLocaleString()}`;
+                document.getElementById('price-discount').textContent = '-$0';
+                document.getElementById('price-tax').textContent = `$${tax.toLocaleString()}`;
+                document.getElementById('price-total').textContent = `$${total.toLocaleString()}`;
+
+                // Update pay button
+                document.querySelector('.pay-text').textContent = `Pagar $${total.toLocaleString()}`;
+
+                // Show payment section
+                document.getElementById('payment-section').classList.add('active');
+                document.getElementById('payment-section').scrollIntoView({ behavior: 'smooth' });
+            }
+
+            selectPaymentMethod(method) {
+                this.selectedMethod = method;
+
+                // Update UI
+                document.querySelectorAll('.payment-method').forEach(m => {
+                    m.classList.remove('selected');
+                });
+                document.querySelector(`[data-method="${method}"]`).classList.add('selected');
+
+                // Show appropriate form
+                document.querySelectorAll('.payment-form-content').forEach(form => {
+                    form.style.display = 'none';
+                });
+                document.getElementById(`${method}-form`).style.display = 'block';
+
+                // Update button text
+                const buttonTexts = {
+                    mercadopago: 'Pagar con Tarjeta',
+                    transfer: 'Confirmar Transferencia',
+                    qr: 'Generar Código QR'
+                };
+
+                const total = document.getElementById('price-total').textContent;
+                document.querySelector('.pay-text').textContent = `${buttonTexts[method]} ${total}`;
+            }
+
+            async processPayment() {
+                if (this.isProcessing) return;
+
+                this.isProcessing = true;
+                this.showLoading(true);
+
+                try {
+                    switch (this.selectedMethod) {
+                        case 'mercadopago':
+                            await this.processMercadoPago();
+                            break;
+                        case 'transfer':
+                            await this.processTransfer();
+                            break;
+                        case 'qr':
+                            await this.processQR();
+                            break;
+                    }
+                } catch (error) {
+                    console.error('Error procesando pago:', error);
+                    this.showError(error.message);
+                } finally {
+                    this.isProcessing = false;
+                    this.showLoading(false);
+                }
+            }
+
+            async processMercadoPago() {
+                const formData = this.getFormData();
+
+                // Validate form
+                if (!this.validateForm(formData)) {
+                    throw new Error('Por favor completa todos los campos requeridos');
+                }
+
+                // Simulate payment processing
+                await this.delay(3000);
+
+                // In production, process with MercadoPago API
+                const paymentResult = await this.createMercadoPagoPayment(formData);
+
+                if (paymentResult.status === 'approved') {
+                    this.showSuccess();
+                } else {
+                    throw new Error('El pago fue rechazado. Verifica los datos de tu tarjeta.');
+                }
+            }
+
+            async createMercadoPagoPayment(formData) {
+                // Simulate API call
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve({
+                            status: 'approved',
+                            id: 'payment_' + Date.now(),
+                            transaction_amount: 3025
+                        });
+                    }, 2000);
+                });
+            }
+
+            async processTransfer() {
+                await this.delay(2000);
+                this.showTransferInstructions();
+            }
+
+            async processQR() {
+                await this.delay(1500);
+                this.generateQRCode();
+                this.startQRTimer();
+            }
+
+            getFormData() {
+                return {
+                    email: document.getElementById('email')?.value,
+                    cardNumber: document.getElementById('cardNumber')?.value,
+                    expirationDate: document.getElementById('expirationDate')?.value,
+                    securityCode: document.getElementById('securityCode')?.value,
+                    cardholderName: document.getElementById('cardholderName')?.value,
+                    identificationType: document.getElementById('identificationType')?.value,
+                    installments: document.getElementById('installments')?.value
+                };
+            }
+
+            validateForm(data) {
+                const required = ['email', 'cardNumber', 'expirationDate', 'securityCode', 'cardholderName'];
+                return required.every(field => data[field] && data[field].trim() !== '');
+            }
+
+            validateField(field) {
+                const value = field.value.trim();
+                let isValid = true;
+                let message = '';
+
+                switch (field.id) {
+                    case 'email':
+                        isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                        message = isValid ? '' : 'Email inválido';
+                        break;
+                    case 'cardNumber':
+                        isValid = value.replace(/\s/g, '').length >= 13;
+                        message = isValid ? '' : 'Número de tarjeta inválido';
+                        break;
+                    case 'expirationDate':
+                        isValid = /^(0[1-9]|1[0-2])\/\d{2}$/.test(value);
+                        message = isValid ? '' : 'Fecha inválida (MM/AA)';
+                        break;
+                    case 'securityCode':
+                        isValid = /^\d{3,4}$/.test(value);
+                        message = isValid ? '' : 'CVV inválido';
+                        break;
+                }
+
+                this.showFieldValidation(field, isValid, message);
+                return isValid;
+            }
+
+            showFieldValidation(field, isValid, message) {
+                field.style.borderColor = isValid ? 'var(--border-color)' : 'var(--danger-red)';
+
+                let errorElement = field.parentNode.querySelector('.field-error');
+                if (!errorElement) {
+                    errorElement = document.createElement('div');
+                    errorElement.className = 'field-error';
+                    errorElement.style.cssText = 'color: var(--danger-red); font-size: 12px; margin-top: 4px;';
+                    field.parentNode.appendChild(errorElement);
+                }
+
+                errorElement.textContent = message;
+            }
+
+            formatCardNumber(input) {
+                let value = input.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+                let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+
+                input.value = formattedValue.substr(0, 19);
+            }
+
+            formatExpirationDate(input) {
+                let value = input.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                input.value = value;
+            }
+
+            showLoading(show) {
+                const button = document.getElementById('pay-button');
+                const payText = button.querySelector('.pay-text');
+                const loading = button.querySelector('.loading');
+
+                if (show) {
+                    payText.style.display = 'none';
+                    loading.style.display = 'flex';
+                    button.disabled = true;
+                } else {
+                    payText.style.display = 'block';
+                    loading.style.display = 'none';
+                    button.disabled = false;
+                }
+            }
+
+            showSuccess() {
+                document.getElementById('payment-section').style.display = 'none';
+                document.getElementById('success-section').classList.add('active');
+                document.getElementById('success-section').scrollIntoView({ behavior: 'smooth' });
+            }
+
+            showError(message) {
+                alert('Error: ' + message);
+            }
+
+            showTransferInstructions() {
+                alert('Te hemos enviado las instrucciones de transferencia por email. Una vez realizada, tu suscripción se activará en 24-48 horas.');
+            }
+
+            generateQRCode() {
+                // En producción, generar QR real con API de MercadoPago
+                const qrContainer = document.getElementById('qr-code');
+                qrContainer.innerHTML = '<img src="data:image/svg+xml;base64,..." alt="Código QR" style="width: 180px; height: 180px;">';
+            }
+
+            startQRTimer() {
+                let timeLeft = 600; // 10 minutes
+                const updateTimer = () => {
+                    const minutes = Math.floor(timeLeft / 60);
+                    const seconds = timeLeft % 60;
+                    // Update timer display
+                    timeLeft--;
+
+                    if (timeLeft < 0) {
+                        // Regenerate QR
+                        this.generateQRCode();
+                        timeLeft = 600;
+                    }
+                };
+
+                setInterval(updateTimer, 1000);
+            }
+
+            // Continuación desde la línea cortada
+            openContactForm() {
+                alert('Nos pondremos en contacto contigo en las próximas 24 horas para discutir tus necesidades empresariales.');
+            }
+
+            delay(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+        }
+
+        // Initialize payment manager
+        const paymentManager = new PaymentManager();
+
+        // Global functions
+        function selectPlan(planType) {
+            paymentManager.selectPlan(planType);
+        }
+
+        function processPayment() {
+            paymentManager.processPayment();
+        }
+
+        // Analytics tracking
+        function trackPlanSelection(plan) {
+            if (window.gtag) {
+                gtag('event', 'select_plan', {
+                    plan_name: plan,
+                    billing_cycle: paymentManager.billingCycle
+                });
+            }
+        }
+
+        function trackPaymentStart(method) {
+            if (window.gtag) {
+                gtag('event', 'begin_checkout', {
+                    payment_method: method,
+                    plan: paymentManager.selectedPlan,
+                    billing_cycle: paymentManager.billingCycle
+                });
+            }
+        }
+
+        function trackPaymentSuccess() {
+            if (window.gtag) {
+                gtag('event', 'purchase', {
+                    transaction_id: 'TXN_' + Date.now(),
+                    value: parseFloat(document.getElementById('price-total').textContent.replace(/[^\d]/g, '')) / 100,
+                    currency: 'ARS',
+                    plan: paymentManager.selectedPlan
+                });
+            }
+        }
+
+        // URL parameter handling
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedPlan = urlParams.get('plan');
+
+            if (selectedPlan && ['basic', 'premium', 'enterprise'].includes(selectedPlan)) {
+                setTimeout(() => {
+                    selectPlan(selectedPlan);
+                }, 500);
+            }
+
+            // Animate cards on load
+            const cards = document.querySelectorAll('.plan-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'all 0.3s ease';
+
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 100);
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function (e) {
+            // Escape to close payment section
+            if (e.key === 'Escape' && document.getElementById('payment-section').classList.contains('active')) {
+                document.getElementById('payment-section').classList.remove('active');
+            }
+
+            // Numbers 1-4 to select plans
+            const planKeys = ['1', '2', '3', '4'];
+            const plans = ['trial', 'basic', 'premium', 'enterprise'];
+
+            if (planKeys.includes(e.key)) {
+                const index = planKeys.indexOf(e.key);
+                selectPlan(plans[index]);
+            }
+        });
+
+        // Form auto-save
+        let autoSaveTimeout;
+        document.addEventListener('input', function (e) {
+            if (e.target.classList.contains('form-input')) {
+                clearTimeout(autoSaveTimeout);
+                autoSaveTimeout = setTimeout(() => {
+                    const formData = {};
+                    document.querySelectorAll('.form-input').forEach(input => {
+                        if (input.value && input.id) {
+                            formData[input.id] = input.value;
+                        }
+                    });
+                    localStorage.setItem('payment_form_data', JSON.stringify(formData));
+                }, 1000);
+            }
+        });
+
+        // Restore form data
+        window.addEventListener('load', function () {
+            const savedData = localStorage.getItem('payment_form_data');
+            if (savedData) {
+                try {
+                    const formData = JSON.parse(savedData);
+                    Object.keys(formData).forEach(key => {
+                        const input = document.getElementById(key);
+                        if (input && formData[key]) {
+                            input.value = formData[key];
+                        }
+                    });
+                } catch (e) {
+                    console.error('Error restoring form data:', e);
+                }
+            }
+        });
+
+        // Clear saved data on successful payment
+        function clearSavedFormData() {
+            localStorage.removeItem('payment_form_data');
+        }
+
+        // Notification system
+        class NotificationManager {
+            static show(message, type = 'info', duration = 5000) {
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: white;
+                    border-radius: 8px;
+                    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+                    padding: 16px;
+                    margin-bottom: 10px;
+                    border-left: 4px solid ${this.getTypeColor(type)};
+                    z-index: 1000;
+                    max-width: 400px;
+                    animation: slideIn 0.3s ease;
+                `;
+
+                notification.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="color: ${this.getTypeColor(type)}; font-size: 18px;">
+                            ${this.getTypeIcon(type)}
+                        </div>
+                        <div style="flex: 1;">
+                            <p style="margin: 0; font-weight: 500; color: var(--text-primary);">
+                                ${message}
+                            </p>
+                        </div>
+                        <button onclick="this.parentElement.parentElement.remove()" 
+                                style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 18px;">
+                            ×
+                        </button>
+                    </div>
+                `;
+
+                document.body.appendChild(notification);
+
+                if (duration > 0) {
+                    setTimeout(() => {
+                        if (notification.parentElement) {
+                            notification.remove();
+                        }
+                    }, duration);
+                }
+            }
+
+            static getTypeColor(type) {
+                const colors = {
+                    'success': '#10B981',
+                    'error': '#EF4444',
+                    'warning': '#F59E0B',
+                    'info': '#4F7AFF'
+                };
+                return colors[type] || colors.info;
+            }
+
+            static getTypeIcon(type) {
+                const icons = {
+                    'success': '✓',
+                    'error': '✕',
+                    'warning': '⚠',
+                    'info': 'ℹ'
+                };
+                return icons[type] || icons.info;
+            }
+        }
+
+        // Security features
+        class SecurityManager {
+            static init() {
+                // Disable right-click on sensitive areas
+                document.querySelectorAll('.payment-form, .order-summary').forEach(element => {
+                    element.addEventListener('contextmenu', function (e) {
+                        e.preventDefault();
+                    });
+                });
+
+                // Detect developer tools
+                let devtools = { open: false, orientation: null };
+                const threshold = 160;
+
+                setInterval(() => {
+                    if (window.outerHeight - window.innerHeight > threshold ||
+                        window.outerWidth - window.innerWidth > threshold) {
+                        if (!devtools.open) {
+                            devtools.open = true;
+                            console.warn('Herramientas de desarrollador detectadas');
+                        }
+                    } else {
+                        devtools.open = false;
+                    }
+                }, 500);
+
+                // Clear sensitive data on page unload
+                window.addEventListener('beforeunload', () => {
+                    // Clear form inputs
+                    document.querySelectorAll('input[type="password"], input[type="text"]').forEach(input => {
+                        if (input.id === 'cardNumber' || input.id === 'securityCode') {
+                            input.value = '';
+                        }
+                    });
+                });
+            }
+        }
+
+        // Initialize security
+        SecurityManager.init();
+
+        // Performance monitoring
+        class PerformanceMonitor {
+            static init() {
+                // Monitor page load
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        const perfData = performance.getEntriesByType('navigation')[0];
+                        const loadTime = perfData.loadEventEnd - perfData.loadEventStart;
+
+                        if (window.gtag) {
+                            gtag('event', 'timing_complete', {
+                                name: 'load',
+                                value: Math.round(loadTime)
+                            });
+                        }
+                    }, 0);
+                });
+
+                // Monitor script errors
+                window.addEventListener('error', (e) => {
+                    if (window.gtag) {
+                        gtag('event', 'exception', {
+                            description: e.message,
+                            fatal: false
+                        });
+                    }
+                });
+            }
+        }
+
+        // Initialize performance monitoring
+        PerformanceMonitor.init();
+
+        // Feature detection
+        class FeatureDetection {
+            static checkSupport() {
+                const features = {
+                    localStorage: typeof (Storage) !== "undefined",
+                    geolocation: "geolocation" in navigator,
+                    webgl: !!window.WebGLRenderingContext,
+                    canvas: !!document.createElement('canvas').getContext,
+                    webWorkers: typeof (Worker) !== "undefined",
+                    serviceWorker: 'serviceWorker' in navigator,
+                    pushNotifications: 'PushManager' in window
+                };
+
+                // Log feature support
+                console.log('Soporte de funciones:', features);
+
+                // Disable features if not supported
+                if (!features.localStorage) {
+                    console.warn('LocalStorage no soportado - deshabilitando auto-guardado');
+                }
+
+                return features;
+            }
+        }
+
+        // Check feature support
+        const supportedFeatures = FeatureDetection.checkSupport();
+
+        // Add CSS for animations and notifications
+        const additionalStyles = document.createElement('style');
+        additionalStyles.textContent = `
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateX(100px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            .notification {
+                animation: slideIn 0.3s ease;
+            }
+
+            /* Pulse animation for popular badge */
+            .popular-badge {
+                animation: pulse 2s infinite;
+            }
+
+            @keyframes pulse {
+                0% {
+                    box-shadow: 0 0 0 0 rgba(79, 122, 255, 0.7);
+                }
+                70% {
+                    box-shadow: 0 0 0 10px rgba(79, 122, 255, 0);
+                }
+                100% {
+                    box-shadow: 0 0 0 0 rgba(79, 122, 255, 0);
+                }
+            }
+
+            /* Loading animation for buttons */
+            .btn:disabled {
+                position: relative;
+                color: transparent;
+            }
+
+            .btn:disabled::after {
+                content: '';
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                top: 50%;
+                left: 50%;
+                margin-left: -8px;
+                margin-top: -8px;
+                border: 2px solid transparent;
+                border-top-color: currentColor;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+            /* Improved focus styles */
+            .form-input:focus {
+                transform: translateY(-1px);
+                box-shadow: 0 0 0 3px rgba(79, 122, 255, 0.1), 0 4px 8px rgba(0,0,0,0.1);
+            }
+
+            /* Card hover effects */
+            .plan-card:hover .plan-icon {
+                transform: scale(1.1);
+                transition: transform 0.2s ease;
+            }
+
+            /* Smooth scrolling */
+            html {
+                scroll-behavior: smooth;
+            }
+
+            /* Print styles */
+            @media print {
+                .header, .payment-section, .success-section {
+                    display: none !important;
+                }
+            }
+
+            /* High contrast mode */
+            @media (prefers-contrast: high) {
+                :root {
+                    --border-color: #000000;
+                    --text-secondary: #000000;
+                }
+            }
+
+            /* Reduced motion */
+            @media (prefers-reduced-motion: reduce) {
+                *, *::before, *::after {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                }
+            }
+        `;
+        document.head.appendChild(additionalStyles);
+
+        // Service Worker registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('SW registration failed:', error);
+                    });
+            });
+        }
+
+        // Initialize tooltips
+        document.querySelectorAll('.tooltip').forEach(element => {
+            element.addEventListener('mouseenter', function () {
+                const tooltip = document.createElement('div');
+                tooltip.className = 'tooltip-popup';
+                tooltip.textContent = this.getAttribute('data-tooltip');
+                tooltip.style.cssText = `
+                    position: absolute;
+                    background: var(--text-primary);
+                    color: white;
+                    padding: 6px 10px;
+                    border-radius: 4px;
+                    font-size: 12px;
+                    white-space: nowrap;
+                    z-index: 1001;
+                    pointer-events: none;
+                `;
+
+                document.body.appendChild(tooltip);
+
+                const rect = this.getBoundingClientRect();
+                tooltip.style.left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + 'px';
+                tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + 'px';
+
+                this._tooltip = tooltip;
+            });
+
+            element.addEventListener('mouseleave', function () {
+                if (this._tooltip) {
+                    this._tooltip.remove();
+                    delete this._tooltip;
+                }
+            });
+        });
+
+        // Final initialization
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('Payment system initialized successfully');
+
+            // Track page view
+            if (window.gtag) {
+                gtag('event', 'page_view', {
+                    page_title: 'Payment Page',
+                    page_location: window.location.href
+                });
+            }
+
+            // Show welcome notification after a delay
+            setTimeout(() => {
+                NotificationManager.show(
+                    'Elige el plan perfecto para tu negocio. ¡Comienza con 30 días gratis!',
+                    'info',
+                    8000
+                );
+            }, 2000);
+        });
+
+        // Export for global access
+        window.paymentManager = paymentManager;
+        window.NotificationManager = NotificationManager;
+        window.SecurityManager = SecurityManager;
+        window.PerformanceMonitor = PerformanceMonitor;
+        window.FeatureDetection = FeatureDetection;
+    </script>
+</body>
+
+</html>
+
+<!--
+====================================
+SECCIÓN COMPLETADA: Sistema de Pagos - Parte 3/3
+ARCHIVO: pages/payment.html (COMPLETO)
+LÍNEAS: 500
+PROGRESO: 12/41 archivos completados
+FASE 5: Sistema de pagos (1/2)
+====================================
+SEGUIR AQUÍ
+====================================
+-->

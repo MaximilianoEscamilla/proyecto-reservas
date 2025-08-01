@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes - Todo lo que necesitas saber | ReservaFácil</title>
+    <meta name="description"
+        content="Encuentra respuestas a las preguntas más frecuentes sobre ReservaFácil. Aprende cómo funciona nuestra plataforma de gestión de reservas.">
+    <meta name="keywords" content="preguntas frecuentes, FAQ, ayuda, ReservaFácil, reservas, soporte, dudas, tutorial">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Preguntas Frecuentes - ReservaFácil">
+    <meta property="og:description"
+        content="Encuentra respuestas a todas tus dudas sobre ReservaFácil, la plataforma líder en gestión de reservas.">
+    <meta property="og:image" content="../assets/images/og-faq.jpg">
+    <meta property="og:url" content="https://reservafacil.com.ar/faq">
+    <meta property="og:type" content="website">
+
+    <!-- JSON-LD Structured Data para FAQs -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "¿Qué es ReservaFácil?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "ReservaFácil es una plataforma digital que permite a pequeños y medianos negocios gestionar sus reservas de forma automática y eficiente."
+                }
+            },
+            {
+                "@type": "Question", 
+                "name": "¿Cuánto cuesta ReservaFácil?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Ofrecemos planes desde $2,999 pesos argentinos por mes, con 30 días de prueba gratuita sin compromiso."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- CSS Variables y Estilos Base -->
+    <style>
+        :root {
+            /* Colores principales - EXACTOS del proyecto */
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --secondary-color: #64748b;
+            --accent-color: #a855f7;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+
+            /* Colores de fondo */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-dark: #0f172a;
+
+            /* Colores de texto */
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            --text-inverse: #ffffff;
+
+            /* Bordes */
+            --border-color: #e2e8f0;
+            --border-light: #f1f5f9;
+
+            /* Sombras */
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+            /* Espaciado */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+
+            /* Border radius */
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+            --border-radius-xl: 16px;
+
+            /* Transiciones */
+            --transition: all 0.2s ease-in-out;
+            --transition-slow: all 0.3s ease-in-out;
+        }
+
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+        }
+
+        /* Contenedores */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .simple-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header - IDÉNTICO al proyecto */
+        .header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo i {
+            color: var(--primary-color);
+            font-size: 1.75rem;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary-color);
+            border-radius: 1px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .simple-button {
+            background: var(--primary-color);
+            color: var(--text-inverse);
+            border: none;
+            padding: 0.875rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .simple-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .button-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .button-outline:hover {
+            background: var(--primary-color);
+            color: var(--text-inverse);
+        }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><circle cx="20" cy="10" r="1" fill="%23e2e8f0" opacity="0.5"/><circle cx="80" cy="5" r="1" fill="%23e2e8f0" opacity="0.3"/><circle cx="50" cy="15" r="1" fill="%23e2e8f0" opacity="0.4"/></svg>') repeat;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-color);
+            color: var(--text-inverse);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Search Section */
+        .search-section {
+            max-width: 600px;
+            margin: 2rem auto 0;
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            font-size: 1rem;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-tertiary);
+            font-size: 1.125rem;
+        }
+
+        .search-button {
+            padding: 1rem 1.5rem;
+            background: var(--primary-color);
+            color: var(--text-inverse);
+            border: none;
+            border-radius: var(--border-radius-lg);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Quick Categories */
+        .quick-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tag {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .category-tag:hover,
+        .category-tag.active {
+            background: var(--primary-color);
+            color: var(--text-inverse);
+        }
+
+        /* FAQ Categories Section */
+        .faq-categories {
+            padding: 4rem 0;
+            background: var(--bg-primary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--bg-tertiary);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .category-card {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--text-inverse);
+        }
+
+        .category-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .category-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .category-questions {
+            color: var(--primary-color);
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /*<---- seguir aqui -->*/
+
+
+        /* FAQ Accordions */
+        .faq-section {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+
+        .faq-category-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .faq-category-title i {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .accordion-item {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .accordion-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .accordion-item.active {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+        }
+
+        .accordion-header:hover {
+            background: var(--bg-secondary);
+        }
+
+        .accordion-question {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .accordion-icon {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+
+        .accordion-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .accordion-answer p {
+            margin-bottom: 1rem;
+        }
+
+        .accordion-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .accordion-answer ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .accordion-answer ul li {
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .accordion-answer ul li::before {
+            content: '✓';
+            position: absolute;
+            left: -1rem;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .accordion-answer a {
+            color: var(--primary-color);
+            text-decoration: underline;
+            transition: var(--transition);
+        }
+
+        .accordion-answer a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Search Results */
+        .search-results {
+            display: none;
+            max-width: 900px;
+            margin: 2rem auto 0;
+            padding: 0 1rem;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-results-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .search-results-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .search-results-count {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .search-result-item {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .search-result-item:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .search-result-question {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .search-result-answer {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .search-result-category {
+            display: inline-block;
+            background: var(--bg-tertiary);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-top: 0.75rem;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 3rem 1rem;
+            display: none;
+        }
+
+        .no-results.active {
+            display: block;
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            color: var(--text-tertiary);
+            margin-bottom: 1rem;
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .no-results p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .nav-buttons {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .search-button {
+                width: 100%;
+            }
+
+            .quick-categories {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+
+            .category-tag {
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .category-card {
+                padding: 1.5rem;
+            }
+
+            .faq-category-title {
+                font-size: 1.5rem;
+            }
+
+            .accordion-header {
+                padding: 1rem;
+            }
+
+            .accordion-question {
+                font-size: 1rem;
+            }
+
+            .accordion-answer {
+                padding: 0 1rem 1rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+
+            .container,
+            .simple-container,
+            .faq-container {
+                padding: 0 0.75rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .category-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-calendar-check"></i>
+                    ReservaFácil
+                </a>
+
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../index.html" class="nav-link">Inicio</a></li>
+                        <li><a href="features.html" class="nav-link">Funciones</a></li>
+                        <li><a href="pricing.html" class="nav-link">Precios</a></li>
+                        <li><a href="about.html" class="nav-link">Nosotros</a></li>
+                        <li><a href="contact.html" class="nav-link">Contacto</a></li>
+                    </ul>
+
+                    <div class="nav-buttons">
+                        <a href="login.html" class="simple-button button-outline">Ingresar</a>
+                        <a href="register.html" class="simple-button">Registrarse</a>
+                    </div>
+
+                    <button class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-question-circle"></i>
+                    Centro de Ayuda
+                </div>
+
+                <h1>Preguntas Frecuentes</h1>
+                <p class="hero-subtitle">
+                    Encuentra respuestas rápidas a las dudas más comunes sobre ReservaFácil.
+                    Si no encuentras lo que buscas, nuestro equipo está aquí para ayudarte.
+                </p>
+
+                <div class="search-section">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Busca tu pregunta aquí..." id="faqSearch">
+                        <button class="search-button" id="searchBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="quick-categories">
+                        <a href="#" class="category-tag active" data-category="all">Todas</a>
+                        <a href="#" class="category-tag" data-category="getting-started">Primeros Pasos</a>
+                        <a href="#" class="category-tag" data-category="pricing">Precios</a>
+                        <a href="#" class="category-tag" data-category="features">Funciones</a>
+                        <a href="#" class="category-tag" data-category="technical">Técnico</a>
+                        <a href="#" class="category-tag" data-category="billing">Facturación</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Categories Overview -->
+    <section class="faq-categories">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Explorar por Categorías</span>
+                <h2 class="section-title">¿En qué podemos ayudarte?</h2>
+                <p class="section-description">
+                    Navega por las categorías más populares o usa el buscador para
+                    encontrar respuestas específicas a tus preguntas.
+                </p>
+            </div>
+
+            <div class="categories-grid">
+                <div class="category-card" data-category="getting-started">
+                    <div class="category-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Primeros Pasos</h3>
+                    <p>
+                        Todo lo que necesitas saber para comenzar con ReservaFácil.
+                        Desde la configuración inicial hasta tu primera reserva.
+                    </p>
+                    <div class="category-questions">
+                        <i class="fas fa-question-circle"></i>
+                        8 preguntas frecuentes
+                    </div>
+                </div>
+
+                <div class="category-card" data-category="pricing">
+                    <div class="category-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Precios y Planes</h3>
+                    <p>
+                        Información sobre nuestros planes, precios, períodos de prueba
+                        y opciones de facturación disponibles.
+                    </p>
+                    <div class="category-questions">
+                        <i class="fas fa-question-circle"></i>
+                        6 preguntas frecuentes
+                    </div>
+                </div>
+
+                <div class="category-card" data-category="features">
+                    <div class="category-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Funciones y Características</h3>
+                    <p>
+                        Aprende a usar todas las funciones de ReservaFácil para
+                        maximizar la eficiencia de tu negocio.
+                    </p>
+                    <div class="category-questions">
+                        <i class="fas fa-question-circle"></i>
+                        12 preguntas frecuentes
+                    </div>
+                </div>
+
+                <div class="category-card" data-category="technical">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Soporte Técnico</h3>
+                    <p>
+                        Soluciona problemas técnicos, integraciones y configuraciones
+                        avanzadas de la plataforma.
+                    </p>
+                    <div class="category-questions">
+                        <i class="fas fa-question-circle"></i>
+                        7 preguntas frecuentes
+                    </div>
+                </div>
+
+                <div class="category-card" data-category="billing">
+                    <div class="category-icon">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <h3>Facturación y Pagos</h3>
+                    <p>
+                        Gestiona tu suscripción, métodos de pago, facturas y
+                        todo lo relacionado con la facturación.
+                    </p>
+                    <div class="category-questions">
+                        <i class="fas fa-question-circle"></i>
+                        5 preguntas frecuentes
+                    </div>
+                </div>
+
+                <div class="category-card" data-category="account">
+                    <div class="category-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <h3>Cuenta y Seguridad</h3>
+                    <p>
+                        Administra tu cuenta, configuración de seguridad, permisos
+                        de usuario y políticas de privacidad.
+                    </p>
+                    <div class="category-questions">
+                        <i class="fas fa-question-circle"></i>
+                        4 preguntas frecuentes
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!---- seguir aqui -->
+
+    <!-- ARCHIVO: faq.html NUEVO - PARTE 2 (BLOQUE 1/2): Preguntas y Respuestas Completas -->
+
+    <!-- Search Results (Hidden by default) -->
+    <div class="search-results" id="searchResults">
+        <div class="search-results-header">
+            <h3 class="search-results-title">Resultados de búsqueda</h3>
+            <p class="search-results-count" id="resultsCount">0 resultados encontrados</p>
+        </div>
+        <div id="searchResultsContainer"></div>
+    </div>
+
+    <!-- No Results (Hidden by default) -->
+    <div class="no-results" id="noResults">
+        <div class="no-results-icon">
+            <i class="fas fa-search"></i>
+        </div>
+        <h3>No encontramos resultados</h3>
+        <p>Intenta con otros términos de búsqueda o explora nuestras categorías.</p>
+        <a href="contact.html" class="simple-button">
+            <i class="fas fa-headset"></i>
+            Contactar Soporte
+        </a>
+    </div>
+
+    <!-- FAQ Sections -->
+    <section class="faq-section" id="faqContent">
+        <div class="faq-container">
+
+            <!-- Primeros Pasos -->
+            <div class="faq-category" data-category="getting-started">
+                <h2 class="faq-category-title">
+                    <i class="fas fa-rocket"></i>
+                    Primeros Pasos
+                </h2>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Qué es ReservaFácil y cómo funciona?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>ReservaFácil es una plataforma digital que permite a pequeños y medianos negocios
+                                    gestionar sus reservas de forma automática y eficiente. Funciona de manera muy
+                                    simple:</p>
+                                <ul>
+                                    <li>Configuras tu negocio y horarios disponibles</li>
+                                    <li>Tus clientes pueden reservar online 24/7</li>
+                                    <li>Recibes notificaciones automáticas de nuevas reservas</li>
+                                    <li>Gestionas todo desde un panel intuitivo</li>
+                                </ul>
+                                <p>Es perfecto para restaurantes, salones de belleza, consultorios médicos, spas y
+                                    cualquier negocio que trabaje con citas.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Cómo empiezo a usar ReservaFácil?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>Comenzar es muy sencillo y te tomará menos de 15 minutos:</p>
+                                <ul>
+                                    <li>Regístrate gratis en <a href="register.html">nuestro formulario</a></li>
+                                    <li>Completa la información básica de tu negocio</li>
+                                    <li>Configura tus servicios y horarios</li>
+                                    <li>Personaliza tu página de reservas</li>
+                                    <li>¡Listo! Ya puedes recibir reservas</li>
+                                </ul>
+                                <p>Tienes 30 días de prueba gratuita para explorar todas las funciones sin compromiso.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Qué tipos de negocios pueden usar ReservaFácil?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>ReservaFácil está diseñado para cualquier negocio que trabaje con citas o reservas:
+                                </p>
+                                <ul>
+                                    <li>Restaurantes y cafeterías</li>
+                                    <li>Salones de belleza y spas</li>
+                                    <li>Consultorios médicos y odontológicos</li>
+                                    <li>Estudios de fitness y yoga</li>
+                                    <li>Talleres de automóviles</li>
+                                    <li>Estudios de fotografía</li>
+                                    <li>Coaches y consultores</li>
+                                    <li>Cualquier servicio que requiera citas</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Necesito conocimientos técnicos para usarlo?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>¡Para nada! ReservaFácil está diseñado para que cualquier persona pueda usarlo sin
+                                    conocimientos técnicos.</p>
+                                <p>Nuestro equipo de soporte te acompaña durante la configuración inicial y ofrecemos:
+                                </p>
+                                <ul>
+                                    <li>Configuración asistida gratuita</li>
+                                    <li>Tutoriales paso a paso</li>
+                                    <li>Soporte en español por WhatsApp</li>
+                                    <li>Videos explicativos</li>
+                                    <li>Centro de ayuda completo</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Cuánto tiempo toma configurar mi negocio?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>La configuración básica toma entre 10-15 minutos. Esto incluye:</p>
+                                <ul>
+                                    <li>Información del negocio (5 minutos)</li>
+                                    <li>Configuración de servicios (5 minutos)</li>
+                                    <li>Horarios de atención (3 minutos)</li>
+                                    <li>Personalización básica (2 minutos)</li>
+                                </ul>
+                                <p>Si necesitas configuraciones más avanzadas, nuestro equipo puede ayudarte sin costo
+                                    adicional.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Precios y Planes -->
+            <div class="faq-category" data-category="pricing">
+                <h2 class="faq-category-title">
+                    <i class="fas fa-credit-card"></i>
+                    Precios y Planes
+                </h2>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Cuánto cuesta ReservaFácil?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>Tenemos planes accesibles para todo tipo de negocio:</p>
+                                <ul>
+                                    <li><strong>Plan Básico:</strong> $2,999/mes - Hasta 50 reservas mensuales</li>
+                                    <li><strong>Plan Profesional:</strong> $4,999/mes - Hasta 200 reservas mensuales
+                                    </li>
+                                    <li><strong>Plan Premium:</strong> $7,999/mes - Reservas ilimitadas</li>
+                                </ul>
+                                <p>Todos los planes incluyen 30 días de prueba gratuita y puedes cancelar cuando quieras
+                                    sin penalizaciones.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿La prueba gratuita tiene limitaciones?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>¡No! Durante los 30 días de prueba gratuita tienes acceso completo a todas las
+                                    funciones del plan Premium:</p>
+                                <ul>
+                                    <li>Reservas ilimitadas</li>
+                                    <li>Todas las funciones avanzadas</li>
+                                    <li>Soporte completo</li>
+                                    <li>Configuración asistida</li>
+                                    <li>App móvil incluida</li>
+                                </ul>
+                                <p>No pedimos tarjeta de crédito para comenzar la prueba.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Qué métodos de pago aceptan?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>Aceptamos todos los métodos de pago populares en Argentina:</p>
+                                <ul>
+                                    <li>Tarjetas de crédito (Visa, Mastercard, American Express)</li>
+                                    <li>Tarjetas de débito</li>
+                                    <li>Transferencia bancaria</li>
+                                    <li>MercadoPago</li>
+                                    <li>Rapipago y Pago Fácil</li>
+                                </ul>
+                                <p>La facturación es mensual y se debita automáticamente. Puedes cambiar tu método de
+                                    pago cuando quieras.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Puedo cambiar de plan en cualquier momento?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>¡Absolutamente! Puedes upgrader o downgrader tu plan cuando necesites:</p>
+                                <ul>
+                                    <li>Los cambios toman efecto inmediatamente</li>
+                                    <li>Solo pagas la diferencia proporcional</li>
+                                    <li>No hay costos adicionales por cambios</li>
+                                    <li>Todos tus datos se mantienen seguros</li>
+                                </ul>
+                                <p>Si necesitas más reservas temporalmente, también ofrecemos packs adicionales.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Funciones y Características -->
+            <div class="faq-category" data-category="features">
+                <h2 class="faq-category-title">
+                    <i class="fas fa-cogs"></i>
+                    Funciones y Características
+                </h2>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Qué funciones principales incluye ReservaFácil?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>ReservaFácil incluye todas las herramientas que necesitas:</p>
+                                <ul>
+                                    <li>Sistema de reservas online 24/7</li>
+                                    <li>Calendario inteligente con disponibilidad automática</li>
+                                    <li>Notificaciones por email y SMS</li>
+                                    <li>Recordatorios automáticos para clientes</li>
+                                    <li>Gestión de servicios y precios</li>
+                                    <li>Base de datos de clientes</li>
+                                    <li>Reportes y estadísticas</li>
+                                    <li>App móvil para iOS y Android</li>
+                                    <li>Integración con Google Calendar</li>
+                                    <li>Widget para tu página web</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Mis clientes pueden cancelar o reprogramar citas?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>Sí, tus clientes pueden gestionar sus reservas fácilmente:</p>
+                                <ul>
+                                    <li>Cancelar citas con el tiempo de aviso que configures</li>
+                                    <li>Reprogramar para otra fecha disponible</li>
+                                    <li>Ver el historial de sus reservas</li>
+                                    <li>Recibir recordatorios automáticos</li>
+                                </ul>
+                                <p>Tú defines las reglas: tiempo mínimo de cancelación, políticas de no-show, etc.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Puedo integrar ReservaFácil con mi página web?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>¡Por supuesto! Ofrecemos varias opciones de integración:</p>
+                                <ul>
+                                    <li>Widget embebido para tu página web</li>
+                                    <li>Botón de "Reservar Ahora" personalizable</li>
+                                    <li>Página de reservas con tu branding</li>
+                                    <li>Integración con WordPress, Wix y Squarespace</li>
+                                    <li>API para desarrolladores</li>
+                                </ul>
+                                <p>También creamos una página de reservas profesional con tu marca si no tienes página
+                                    web.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Funciona con múltiples empleados y servicios?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>Sí, ReservaFácil está diseñado para negocios de cualquier tamaño:</p>
+                                <ul>
+                                    <li>Agregar múltiples empleados con horarios individuales</li>
+                                    <li>Servicios ilimitados con duraciones y precios diferentes</li>
+                                    <li>Clientes pueden elegir empleado específico o el primero disponible</li>
+                                    <li>Gestión de permisos y roles</li>
+                                    <li>Reportes individuales por empleado</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Envía recordatorios automáticos a los clientes?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>Sí, el sistema de recordatorios es completamente automático:</p>
+                                <ul>
+                                    <li>Email de confirmación inmediato al reservar</li>
+                                    <li>Recordatorio 24 horas antes de la cita</li>
+                                    <li>SMS opcional 2 horas antes (según plan)</li>
+                                    <li>Recordatorio de feedback post-cita</li>
+                                </ul>
+                                <p>Puedes personalizar todos los mensajes y horarios de envío.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <---- seguir aqui -->
+
+            <!-- ARCHIVO: faq.html NUEVO - PARTE 2 (BLOQUE 2/2): Categorías Restantes, Footer y JavaScript -->
+
+            <!-- Soporte Técnico -->
+            <div class="faq-category" data-category="technical">
+                <h2 class="faq-category-title">
+                    <i class="fas fa-laptop-code"></i>
+                    Soporte Técnico
+                </h2>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Qué pasa si tengo problemas técnicos?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>Nuestro equipo de soporte está disponible para ayudarte:</p>
+                                <ul>
+                                    <li>WhatsApp: +54 11 5000-1234 (Lun-Vie 9-20hs)</li>
+                                    <li>Email: soporte@reservafacil.com.ar</li>
+                                    <li>Chat en vivo desde la plataforma</li>
+                                    <li>Base de conocimientos con tutoriales</li>
+                                    <li>Videos explicativos paso a paso</li>
+                                </ul>
+                                <p>Tiempo promedio de respuesta: 15 minutos en horario laboral.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Qué navegadores son compatibles?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>ReservaFácil funciona perfectamente en todos los navegadores modernos:</p>
+                                <ul>
+                                    <li>Google Chrome (recomendado)</li>
+                                    <li>Mozilla Firefox</li>
+                                    <li>Safari (Mac e iOS)</li>
+                                    <li>Microsoft Edge</li>
+                                    <li>Opera</li>
+                                </ul>
+                                <p>También tenemos apps nativas para iOS y Android disponibles en las tiendas oficiales.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Mis datos están seguros?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>La seguridad es nuestra máxima prioridad:</p>
+                                <ul>
+                                    <li>Encriptación SSL de 256 bits en todas las conexiones</li>
+                                    <li>Servidores en AWS con certificación SOC 2</li>
+                                    <li>Backups automáticos diarios</li>
+                                    <li>Cumplimiento con GDPR y Ley de Protección de Datos Argentina</li>
+                                    <li>Autenticación de dos factores disponible</li>
+                                </ul>
+                                <p>Nunca compartimos tus datos con terceros sin tu autorización.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Puedo exportar mis datos si decido cambiar de plataforma?
+                            </h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>¡Por supuesto! Tus datos son tuyos y puedes exportarlos cuando quieras:</p>
+                                <ul>
+                                    <li>Exportación completa en formato CSV/Excel</li>
+                                    <li>Incluye clientes, reservas, servicios y reportes</li>
+                                    <li>Proceso automatizado desde tu panel</li>
+                                    <li>Sin costos adicionales</li>
+                                    <li>Asistencia técnica para la migración</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Facturación y Pagos -->
+            <div class="faq-category" data-category="billing">
+                <h2 class="faq-category-title">
+                    <i class="fas fa-file-invoice"></i>
+                    Facturación y Pagos
+                </h2>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Cuándo se cobra la suscripción?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>La facturación es simple y transparente:</p>
+                                <ul>
+                                    <li>30 días de prueba gratuita (sin tarjeta requerida)</li>
+                                    <li>El primer cobro se realiza al día 31</li>
+                                    <li>Luego se cobra automáticamente cada mes en la misma fecha</li>
+                                    <li>Recibes una factura por email antes de cada cobro</li>
+                                    <li>Puedes cancelar en cualquier momento sin penalizaciones</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Emiten facturas oficiales?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>Sí, cumplimos con toda la normativa fiscal argentina:</p>
+                                <ul>
+                                    <li>Facturas electrónicas oficiales (AFIP)</li>
+                                    <li>Factura A para responsables inscriptos</li>
+                                    <li>Factura B para monotributistas y consumidores finales</li>
+                                    <li>Envío automático por email</li>
+                                    <li>Disponibles para descarga desde tu panel</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Qué pasa si no puedo pagar un mes?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>Entendemos que pueden surgir inconvenientes. Te ofrecemos:</p>
+                                <ul>
+                                    <li>Período de gracia de 7 días sin suspensión del servicio</li>
+                                    <li>Planes de pago flexibles</li>
+                                    <li>Opción de pausa temporal de la cuenta</li>
+                                    <li>Comunicación directa con nuestro equipo comercial</li>
+                                    <li>Downgrade temporal a plan menor</li>
+                                </ul>
+                                <p>Contactanos por WhatsApp y encontraremos una solución juntos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cuenta y Seguridad -->
+            <div class="faq-category" data-category="account">
+                <h2 class="faq-category-title">
+                    <i class="fas fa-user-cog"></i>
+                    Cuenta y Seguridad
+                </h2>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Cómo cambio mi contraseña?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>Cambiar tu contraseña es muy sencillo:</p>
+                                <ul>
+                                    <li>Ve a Configuración → Cuenta en tu panel</li>
+                                    <li>Haz clic en "Cambiar contraseña"</li>
+                                    <li>Ingresa tu contraseña actual y la nueva</li>
+                                    <li>Confirma los cambios</li>
+                                </ul>
+                                <p>Si olvidaste tu contraseña, usa la opción "Recuperar contraseña" en el login.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Puedo agregar otros usuarios a mi cuenta?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>Sí, puedes invitar a tu equipo según tu plan:</p>
+                                <ul>
+                                    <li>Plan Básico: 1 usuario (tú)</li>
+                                    <li>Plan Profesional: Hasta 3 usuarios</li>
+                                    <li>Plan Premium: Usuarios ilimitados</li>
+                                </ul>
+                                <p>Cada usuario puede tener permisos diferentes: solo lectura, gestión de reservas, o
+                                    administrador completo.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-question">¿Cómo cancelo mi cuenta?</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-answer">
+                                <p>Puedes cancelar tu cuenta en cualquier momento:</p>
+                                <ul>
+                                    <li>Ve a Configuración → Facturación</li>
+                                    <li>Haz clic en "Cancelar suscripción"</li>
+                                    <li>Confirma la cancelación</li>
+                                    <li>Tu cuenta permanece activa hasta el final del período pagado</li>
+                                    <li>Puedes reactivarla cuando quieras</li>
+                                </ul>
+                                <p>También puedes contactarnos directamente si necesitas ayuda.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¿No encontraste la respuesta que buscabas?</h2>
+                <p>
+                    Nuestro equipo de soporte está aquí para ayudarte. Contactanos y
+                    resolveremos tus dudas en minutos.
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/541150001234" class="simple-button" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp Soporte
+                    </a>
+                    <a href="contact.html" class="simple-button button-outline-white">
+                        <i class="fas fa-envelope"></i>
+                        Enviar Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>
+                        <i class="fas fa-calendar-check"></i>
+                        ReservaFácil
+                    </h3>
+                    <p>
+                        La plataforma líder en Argentina para gestión de reservas.
+                        Ayudamos a pequeños y medianos negocios a digitalizar y
+                        optimizar su operación.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/reservafacil" target="_blank">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://instagram.com/reservafacil" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/reservafacil" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com/reservafacil" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Producto</h3>
+                    <ul class="footer-links">
+                        <li><a href="features.html">Funciones</a></li>
+                        <li><a href="pricing.html">Precios</a></li>
+                        <li><a href="integrations.html">Integraciones</a></li>
+                        <li><a href="mobile-app.html">App Móvil</a></li>
+                        <li><a href="api.html">API</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Empresa</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">Nosotros</a></li>
+                        <li><a href="careers.html">Trabajá con nosotros</a></li>
+                        <li><a href="press.html">Prensa</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Soporte</h3>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Centro de Ayuda</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                        <li><a href="faq.html">Preguntas Frecuentes</a></li>
+                        <li><a href="tutorials.html">Tutoriales</a></li>
+                        <li><a href="status.html">Estado del Servicio</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="terms.html">Términos y Condiciones</a></li>
+                        <li><a href="privacy.html">Política de Privacidad</a></li>
+                        <li><a href="cookies.html">Política de Cookies</a></li>
+                        <li><a href="security.html">Seguridad</a></li>
+                        <li><a href="compliance.html">Cumplimiento</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 ReservaFácil. Todos los derechos reservados. Hecho con ❤️ en Buenos Aires, Argentina.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CSS para CTA y Footer -->
+    <style>
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 0;
+            background: var(--primary-color);
+            color: var(--text-inverse);
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .button-white {
+            background: var(--bg-primary);
+            color: var(--primary-color);
+            border: none;
+        }
+
+        .button-white:hover {
+            background: var(--bg-secondary);
+            transform: translateY(-2px);
+        }
+
+        .button-outline-white {
+            background: transparent;
+            color: var(--text-inverse);
+            border: 2px solid var(--text-inverse);
+        }
+
+        .button-outline-white:hover {
+            background: var(--text-inverse);
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            color: var(--text-inverse);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-inverse);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--text-inverse);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+
+    <!-- JavaScript -->
+    <script>
+        // Variables globales
+        let allFAQs = [];
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeFAQ();
+            setupEventListeners();
+            buildFAQDatabase();
+        });
+
+        function initializeFAQ() {
+            // Mostrar todas las categorías por defecto
+            showAllCategories();
+
+            // Manejar acordeones
+            setupAccordions();
+        }
+
+        function setupEventListeners() {
+            // Search input
+            const searchInput = document.getElementById('faqSearch');
+            const searchBtn = document.getElementById('searchBtn');
+
+            searchInput.addEventListener('input', handleSearch);
+            searchInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    handleSearch();
+                }
+            });
+
+            searchBtn.addEventListener('click', handleSearch);
+
+            // Category filters
+            const categoryTags = document.querySelectorAll('.category-tag');
+            categoryTags.forEach(tag => {
+                tag.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    handleCategoryFilter(this.dataset.category);
+                    updateActiveCategory(this);
+                });
+            });
+
+            // Category cards
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    const category = this.dataset.category;
+                    handleCategoryFilter(category);
+                    scrollToCategorySection(category);
+                });
+            });
+        }
+
+        function setupAccordions() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function () {
+                    const item = this.parentElement;
+                    const content = item.querySelector('.accordion-content');
+                    const icon = this.querySelector('.accordion-icon');
+
+                    // Toggle current item
+                    item.classList.toggle('active');
+
+                    // Update max-height for animation
+                    if (item.classList.contains('active')) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        content.style.maxHeight = '0';
+                    }
+                });
+            });
+        }
+
+        function buildFAQDatabase() {
+            const faqItems = document.querySelectorAll('.accordion-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.accordion-question').textContent;
+                const answer = item.querySelector('.accordion-answer').textContent;
+                const category = item.closest('.faq-category').dataset.category;
+
+                allFAQs.push({
+                    question: question,
+                    answer: answer,
+                    category: category,
+                    element: item
+                });
+            });
+        }
+
+        function handleSearch() {
+            const query = document.getElementById('faqSearch').value.trim().toLowerCase();
+
+            if (query === '') {
+                showAllCategories();
+                return;
+            }
+
+            const results = allFAQs.filter(faq =>
+                faq.question.toLowerCase().includes(query) ||
+                faq.answer.toLowerCase().includes(query)
+            );
+
+            displaySearchResults(results, query);
+        }
+
+        function displaySearchResults(results, query) {
+            const searchResults = document.getElementById('searchResults');
+            const faqContent = document.getElementById('faqContent');
+            const noResults = document.getElementById('noResults');
+            const resultsContainer = document.getElementById('searchResultsContainer');
+            const resultsCount = document.getElementById('resultsCount');
+
+            // Hide FAQ content
+            faqContent.style.display = 'none';
+            noResults.classList.remove('active');
+
+            if (results.length === 0) {
+                searchResults.classList.remove('active');
+                noResults.classList.add('active');
+                return;
+            }
+
+            // Update results count
+            resultsCount.textContent = `${results.length} resultado${results.length !== 1 ? 's' : ''} para "${query}"`;
+
+            // Clear previous results
+            resultsContainer.innerHTML = '';
+
+            // Add results
+            results.forEach(result => {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'search-result-item';
+                resultItem.innerHTML = `
+                    <h4 class="search-result-question">${highlightText(result.question, query)}</h4>
+                    <p class="search-result-answer">${highlightText(truncateText(result.answer, 150), query)}</p>
+                    <span class="search-result-category">${getCategoryName(result.category)}</span>
+                `;
+
+                resultItem.addEventListener('click', function () {
+                    clearSearch();
+                    scrollToFAQ(result.element);
+                    result.element.classList.add('active');
+                    const content = result.element.querySelector('.accordion-content');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                });
+
+                resultsContainer.appendChild(resultItem);
+            });
+
+            searchResults.classList.add('active');
+        }
+
+        function highlightText(text, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return text.replace(regex, '<mark style="background: #fef08a; padding: 0 2px;">$1</mark>');
+        }
+
+        function truncateText(text, maxLength) {
+            if (text.length <= maxLength) return text;
+            return text.substring(0, maxLength) + '...';
+        }
+
+        function getCategoryName(category) {
+            const names = {
+                'getting-started': 'Primeros Pasos',
+                'pricing': 'Precios',
+                'features': 'Funciones',
+                'technical': 'Técnico',
+                'billing': 'Facturación',
+                'account': 'Cuenta'
+            };
+            return names[category] || category;
+        }
+
+        function handleCategoryFilter(category) {
+            if (category === 'all') {
+                showAllCategories();
+                return;
+            }
+
+            const categories = document.querySelectorAll('.faq-category');
+            const searchResults = document.getElementById('searchResults');
+            const noResults = document.getElementById('noResults');
+
+            searchResults.classList.remove('active');
+            noResults.classList.remove('active');
+            document.getElementById('faqContent').style.display = 'block';
+
+            categories.forEach(cat => {
+                if (cat.dataset.category === category) {
+                    cat.style.display = 'block';
+                    scrollToCategorySection(category);
+                } else {
+                    cat.style.display = 'none';
+                }
+            });
+        }
+
+        function showAllCategories() {
+            const categories = document.querySelectorAll('.faq-category');
+            const searchResults = document.getElementById('searchResults');
+            const noResults = document.getElementById('noResults');
+
+            searchResults.classList.remove('active');
+            noResults.classList.remove('active');
+            document.getElementById('faqContent').style.display = 'block';
+
+            categories.forEach(cat => {
+                cat.style.display = 'block';
+            });
+        }
+
+        function updateActiveCategory(selectedTag) {
+            document.querySelectorAll('.category-tag').forEach(tag => {
+                tag.classList.remove('active');
+            });
+            selectedTag.classList.add('active');
+        }
+
+        function scrollToCategorySection(category) {
+            const section = document.querySelector(`[data-category="${category}"]`);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function scrollToFAQ(element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function clearSearch() {
+            document.getElementById('faqSearch').value = '';
+            showAllCategories();
+        }
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const navButtons = document.querySelector('.nav-buttons');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function () {
+                const isActive = navLinks.classList.contains('active');
+
+                if (isActive) {
+                    navLinks.classList.remove('active');
+                    navButtons.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                } else {
+                    navLinks.classList.add('active');
+                    navButtons.classList.add('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+                }
+            });
+        }
+
+        // Analytics tracking
+        function trackFAQInteraction(action, question) {
+            console.log('FAQ Analytics:', { action, question });
+            // Aquí iría la integración con Google Analytics
+        }
+
+        // Track accordion clicks
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function () {
+                const question = this.querySelector('.accordion-question').textContent;
+                trackFAQInteraction('accordion_open', question);
+            });
+        });
+
+        // Track search usage
+        document.getElementById('faqSearch').addEventListener('input', function () {
+            if (this.value.length > 2) {
+                trackFAQInteraction('search', this.value);
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones - ReservaFácil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Estilos base del dashboard original */
+        :root {
+            --primary-blue: #4F7AFF;
+            --primary-blue-dark: #3B5ECC;
+            --success-green: #10B981;
+            --warning-yellow: #F59E0B;
+            --danger-red: #EF4444;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-muted: #9CA3AF;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F9FAFB;
+            --bg-tertiary: #F3F4F6;
+            --border-color: #E5E7EB;
+            --border-light: #F3F4F6;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --radius-lg: 12px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .page-header {
+            margin-bottom: 32px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .notifications-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .notification-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .notification-card:hover {
+            box-shadow: var(--shadow);
+            transform: translateY(-1px);
+        }
+
+        .card-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+        }
+
+        .whatsapp-icon {
+            background: #25D366;
+        }
+
+        .email-icon {
+            background: #4285F4;
+        }
+
+        .sms-icon {
+            background: #FF6B35;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .card-content {
+            padding: 24px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-blue-dark);
+        }
+
+        .btn-success {
+            background: var(--success-green);
+            color: white;
+        }
+
+        .btn-warning {
+            background: var(--warning-yellow);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        .configuration-section {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: between;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .section-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .section-content {
+            padding: 24px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(79, 122, 255, 0.1);
+        }
+
+        .form-select {
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .form-textarea {
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 14px;
+            min-height: 100px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-active {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-green);
+        }
+
+        .status-inactive {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger-red);
+        }
+
+        .tabs {
+            display: flex;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius);
+            padding: 4px;
+            margin-bottom: 24px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 10px 16px;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+        }
+
+        .tab.active {
+            background: var(--bg-primary);
+            color: var(--primary-blue);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: between;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-muted);
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        @media (max-width: 1024px) {
+            .notifications-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="page-header">
+        <h1 class="page-title">Centro de Notificaciones</h1>
+        <p class="page-subtitle">Gestiona WhatsApp, Email y SMS desde un solo lugar</p>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="notifications-grid">
+        <!-- WhatsApp Card -->
+        <div class="notification-card">
+            <div class="card-header">
+                <div class="card-icon whatsapp-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3 class="card-title">WhatsApp</h3>
+            </div>
+            <div class="card-content">
+                <div class="stat-row">
+                    <span class="stat-label">Mensajes hoy</span>
+                    <span class="stat-value" id="whatsapp-today">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Entregados</span>
+                    <span class="stat-value" id="whatsapp-delivered">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Leídos</span>
+                    <span class="stat-value" id="whatsapp-read">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Estado</span>
+                    <span class="status-badge status-active" id="whatsapp-status">Activo</span>
+                </div>
+                <div style="margin-top: 16px;">
+                    <button class="btn btn-success btn-sm" onclick="openModal('whatsapp-modal')">
+                        <i class="fas fa-cog"></i> Configurar
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="openModal('whatsapp-send-modal')">
+                        <i class="fas fa-paper-plane"></i> Enviar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Email Card -->
+        <div class="notification-card">
+            <div class="card-header">
+                <div class="card-icon email-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3 class="card-title">Email</h3>
+            </div>
+            <div class="card-content">
+                <div class="stat-row">
+                    <span class="stat-label">Emails hoy</span>
+                    <span class="stat-value" id="email-today">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Entregados</span>
+                    <span class="stat-value" id="email-delivered">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Abiertos</span>
+                    <span class="stat-value" id="email-opened">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Estado</span>
+                    <span class="status-badge status-active" id="email-status">Activo</span>
+                </div>
+                <div style="margin-top: 16px;">
+                    <button class="btn btn-success btn-sm" onclick="openModal('email-modal')">
+                        <i class="fas fa-cog"></i> Configurar
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="openModal('email-send-modal')">
+                        <i class="fas fa-paper-plane"></i> Enviar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SMS Card -->
+        <div class="notification-card">
+            <div class="card-header">
+                <div class="card-icon sms-icon">
+                    <i class="fas fa-sms"></i>
+                </div>
+                <h3 class="card-title">SMS</h3>
+            </div>
+            <div class="card-content">
+                <div class="stat-row">
+                    <span class="stat-label">SMS hoy</span>
+                    <span class="stat-value" id="sms-today">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Entregados</span>
+                    <span class="stat-value" id="sms-delivered">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Costo hoy</span>
+                    <span class="stat-value" id="sms-cost">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Estado</span>
+                    <span class="status-badge status-active" id="sms-status">Activo</span>
+                </div>
+                <div style="margin-top: 16px;">
+                    <button class="btn btn-success btn-sm" onclick="openModal('sms-modal')">
+                        <i class="fas fa-cog"></i> Configurar
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="openModal('sms-send-modal')">
+                        <i class="fas fa-paper-plane"></i> Enviar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs for detailed configuration -->
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab('overview')">Resumen</div>
+        <div class="tab" onclick="switchTab('campaigns')">Campañas</div>
+        <div class="tab" onclick="switchTab('templates')">Templates</div>
+        <div class="tab" onclick="switchTab('analytics')">Analytics</div>
+    </div>
+
+    <!-- Tab Contents -->
+    <div id="overview-tab" class="tab-content active">
+        <div class="configuration-section">
+            <div class="section-header">
+                <h3 class="section-title">Configuraciones Activas</h3>
+                <div class="section-actions">
+                    <button class="btn btn-primary btn-sm" onclick="refreshConfigs()">
+                        <i class="fas fa-sync"></i> Actualizar
+                    </button>
+                </div>
+            </div>
+            <div class="section-content">
+                <div id="configs-list">
+                    <!-- Se cargarán dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="campaigns-tab" class="tab-content">
+        <div class="configuration-section">
+            <div class="section-header">
+                <h3 class="section-title">Campañas de Notificaciones</h3>
+                <div class="section-actions">
+                    <button class="btn btn-primary btn-sm" onclick="openModal('campaign-modal')">
+                        <i class="fas fa-plus"></i> Nueva Campaña
+                    </button>
+                </div>
+            </div>
+            <div class="section-content">
+                <div id="campaigns-list">
+                    <!-- Se cargarán dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="templates-tab" class="tab-content">
+        <div class="configuration-section">
+            <div class="section-header">
+                <h3 class="section-title">Templates de Mensajes</h3>
+                <div class="section-actions">
+                    <button class="btn btn-primary btn-sm" onclick="openModal('template-modal')">
+                        <i class="fas fa-plus"></i> Nuevo Template
+                    </button>
+                </div>
+            </div>
+            <div class="section-content">
+                <div id="templates-list">
+                    <!-- Se cargarán dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="analytics-tab" class="tab-content">
+        <div class="configuration-section">
+            <div class="section-header">
+                <h3 class="section-title">Analytics de Notificaciones</h3>
+                <div class="section-actions">
+                    <button class="btn btn-primary btn-sm" onclick="exportAnalytics()">
+                        <i class="fas fa-download"></i> Exportar
+                    </button>
+                </div>
+            </div>
+            <div class="section-content">
+                <div id="analytics-charts">
+                    <!-- Gráficos de analytics -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para configuración WhatsApp -->
+    <div id="whatsapp-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Configurar WhatsApp</h3>
+                <button class="modal-close" onclick="closeModal('whatsapp-modal')">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="whatsapp-config-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Proveedor</label>
+                            <select class="form-select" name="provider" required>
+                                <option value="">Seleccionar proveedor</option>
+                                <option value="whatsapp_business">WhatsApp Business API</option>
+                                <option value="twilio">Twilio</option>
+                                <option value="baileys">Baileys</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nombre de Configuración</label>
+                            <input type="text" class="form-input" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Número de Teléfono</label>
+                            <input type="text" class="form-input" name="phone_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Access Token</label>
+                            <input type="password" class="form-input" name="access_token" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number ID</label>
+                            <input type="text" class="form-input" name="phone_number_id">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Webhook URL</label>
+                            <input type="url" class="form-input" name="webhook_url">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('whatsapp-modal')">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="saveWhatsAppConfig()">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para enviar WhatsApp -->
+    <div id="whatsapp-send-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Enviar WhatsApp</h3>
+                <button class="modal-close" onclick="closeModal('whatsapp-send-modal')">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="whatsapp-send-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Configuración</label>
+                            <select class="form-select" name="config_id" required>
+                                <!-- Se cargarán dinámicamente -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Número Destinatario</label>
+                            <input type="text" class="form-input" name="recipient" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mensaje</label>
+                        <textarea class="form-textarea" name="content" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    onclick="closeModal('whatsapp-send-modal')">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="sendWhatsApp()">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Más modales para Email y SMS... -->
+
+    <script>
+        // Clase principal para gestión de notificaciones
+        class NotificationManager {
+            constructor() {
+                this.baseURL = '/api/notifications';
+                this.configs = {
+                    whatsapp: [],
+                    email: [],
+                    sms: []
+                };
+                this.init();
+            }
+
+            async init() {
+                await this.loadConfigurations();
+                await this.loadStats();
+                this.setupEventListeners();
+                this.startRealTimeUpdates();
+            }
+
+            async loadConfigurations() {
+                try {
+                    // Cargar configuraciones de WhatsApp
+                    const whatsappResponse = await fetch(`${this.baseURL}/whatsapp/config`);
+                    const whatsappData = await whatsappResponse.json();
+                    this.configs.whatsapp = whatsappData.configurations || [];
+
+                    // Cargar configuraciones de Email
+                    const emailResponse = await fetch(`${this.baseURL}/email/config`);
+                    const emailData = await emailResponse.json();
+                    this.configs.email = emailData.configurations || [];
+
+                    // Cargar configuraciones de SMS
+                    const smsResponse = await fetch(`${this.baseURL}/sms/config`);
+                    const smsData = await smsResponse.json();
+                    this.configs.sms = smsData.configurations || [];
+
+                    this.updateConfigsList();
+                } catch (error) {
+                    console.error('Error loading configurations:', error);
+                    this.showNotification('Error cargando configuraciones', 'error');
+                }
+            }
+
+            async loadStats() {
+                try {
+                    // Cargar estadísticas de WhatsApp
+                    const whatsappStats = await fetch(`${this.baseURL}/whatsapp/analytics`);
+                    const whatsappData = await whatsappStats.json();
+                    this.updateWhatsAppStats(whatsappData.analytics);
+
+                    // Cargar estadísticas de Email
+                    const emailStats = await fetch(`${this.baseURL}/email/analytics`);
+                    const emailData = await emailStats.json();
+                    this.updateEmailStats(emailData.analytics);
+
+                    // Cargar estadísticas de SMS
+                    const smsStats = await fetch(`${this.baseURL}/sms/analytics`);
+                    const smsData = await smsStats.json();
+                    this.updateSMSStats(smsData.analytics);
+
+                } catch (error) {
+                    console.error('Error loading stats:', error);
+                }
+            }
+
+            updateWhatsAppStats(stats) {
+                if (!stats) return;
+                document.getElementById('whatsapp-today').textContent = stats.overview?.total_messages || '0';
+                document.getElementById('whatsapp-delivered').textContent = stats.overview?.delivered_messages || '0';
+                document.getElementById('whatsapp-read').textContent = stats.overview?.opened_messages || '0';
+
+                const deliveryRate = stats.rates?.delivery_rate || 0;
+                const statusElement = document.getElementById('whatsapp-status');
+                if (deliveryRate > 90) {
+                    statusElement.className = 'status-badge status-active';
+                    statusElement.textContent = 'Excelente';
+                } else if (deliveryRate > 70) {
+                    statusElement.className = 'status-badge status-warning';
+                    statusElement.textContent = 'Bueno';
+                } else {
+                    statusElement.className = 'status-badge status-inactive';
+                    statusElement.textContent = 'Mejorar';
+                }
+            }
+
+            updateEmailStats(stats) {
+                if (!stats) return;
+                document.getElementById('email-today').textContent = stats.overview?.total_emails || '0';
+                document.getElementById('email-delivered').textContent = stats.overview?.delivered_emails || '0';
+                document.getElementById('email-opened').textContent = stats.overview?.opened_emails || '0';
+            }
+
+            updateSMSStats(stats) {
+                if (!stats) return;
+                document.getElementById('sms-today').textContent = stats.overview?.total_sms || '0';
+                document.getElementById('sms-delivered').textContent = stats.overview?.delivered_sms || '0';
+                document.getElementById('sms-cost').textContent = `$${stats.overview?.total_cost || '0'}`;
+            }
+
+            updateConfigsList() {
+                const configsList = document.getElementById('configs-list');
+                let html = '';
+
+                // WhatsApp configs
+                this.configs.whatsapp.forEach(config => {
+                    html += `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid var(--border-light);">
+                            <div>
+                                <strong>WhatsApp - ${config.name}</strong>
+                                <br><small style="color: var(--text-muted);">${config.phone_number} (${config.provider})</small>
+                            </div>
+                            <div>
+                                <span class="status-badge ${config.is_active ? 'status-active' : 'status-inactive'}">
+                                    ${config.is_active ? 'Activo' : 'Inactivo'}
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                // Email configs
+                this.configs.email.forEach(config => {
+                    html += `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid var(--border-light);">
+                            <div>
+                                <strong>Email - ${config.name}</strong>
+                                <br><small style="color: var(--text-muted);">${config.from_email} (${config.provider})</small>
+                            </div>
+                            <div>
+                                <span class="status-badge ${config.is_active ? 'status-active' : 'status-inactive'}">
+                                    ${config.is_active ? 'Activo' : 'Inactivo'}
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }    
