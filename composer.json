@@ -1,0 +1,58 @@
+{
+    "name": "maximiliano/proyecto-reservas",
+    "description": "Sistema completo de gestión de reservas con seguridad avanzada",
+    "type": "project",
+    "version": "2.0.0",
+    "authors": [
+        {
+            "name": "Maximiliano Escamilla",
+            "email": "maximiliano@reservas.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "ext-pdo": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "phpmailer/phpmailer": "^6.8",
+        "firebase/php-jwt": "^6.0",
+        "monolog/monolog": "^3.0",
+        "symfony/validator": "^6.0",
+        "ramsey/uuid": "^4.0",
+        "league/csv": "^9.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "phpstan/phpstan": "^1.0",
+        "squizlabs/php_codesniffer": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Reservas\\": "src/",
+            "Reservas\\Config\\": "config/",
+            "Reservas\\Api\\": "api/",
+            "Reservas\\Models\\": "models/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "start": "php -S localhost:8000 -t .",
+        "test": "phpunit",
+        "lint": "phpcs --standard=PSR12 src/",
+        "analyze": "phpstan analyse src/",
+        "install-hooks": "php scripts/install-git-hooks.php"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
