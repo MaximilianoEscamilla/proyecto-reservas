@@ -1,0 +1,39 @@
+# Archivos de configuraci¢n sensibles
+.env
+.env.local
+.env.production
+
+# Logs
+logs/*.log
+*.log
+
+# Cache
+cache/*
+tmp/*
+
+# Uploads (except placeholders)
+uploads/*
+!uploads/.gitkeep
+!uploads/*/.gitkeep
+
+# Dependencias
+vendor/
+node_modules/
+
+# Backups
+backups/*
+!backups/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporales
+*.tmp
+*.temp
