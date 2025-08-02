@@ -4,172 +4,644 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="">
-    <title>Login - Sistema de Reservas</title>
+    <meta name="description"
+        content="Iniciar sesión en ReservaFácil - Accede a tu panel de control para gestionar tu negocio">
+    <meta name="robots" content="noindex, nofollow">
 
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Estilos personalizados -->
-    <link href="../assets/css/auth.css" rel="stylesheet">
+    <title>Iniciar Sesión - ReservaFácil</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-blue: #4F7AFF;
+            --primary-blue-dark: #3B5ECC;
+            --primary-blue-light: #6B91FF;
+            --accent-yellow: #FFD700;
+            --success-green: #10B981;
+            --danger-red: #EF4444;
+            --warning-yellow: #F59E0B;
+            --text-white: #FFFFFF;
+            --text-gray: #6B7280;
+            --text-dark: #1F2937;
+            --text-muted: #9CA3AF;
+            --bg-white: #FFFFFF;
+            --bg-gray: #F9FAFB;
+            --bg-light: #F3F4F6;
+            --border-gray: #E5E7EB;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+            --transition: all 0.2s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Container principal */
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background: var(--bg-white);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Header */
+        .login-header {
+            padding: 40px 32px 20px;
+            text-align: center;
+            background: var(--bg-white);
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--primary-blue);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-blue);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            color: var(--text-gray);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* Form */
+        .login-form {
+            padding: 0 32px 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .form-input-container {
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px 12px 44px;
+            border: 2px solid var(--border-gray);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--bg-white);
+            color: var(--text-dark);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(79, 122, 255, 0.1);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-gray);
+            font-size: 16px;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .form-input:focus+.input-icon {
+            color: var(--primary-blue);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px;
+            transition: var(--transition);
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Remember me */
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--border-gray);
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .checkbox input {
+            opacity: 0;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .checkbox input:checked+.checkmark {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .checkbox input:checked+.checkmark::after {
+            display: block;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: transparent;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .checkmark::after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 4px;
+            top: 1px;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .remember-label {
+            font-size: 14px;
+            color: var(--text-gray);
+            cursor: pointer;
+        }
+
+        .forgot-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .forgot-link:hover {
+            color: var(--primary-blue-dark);
+            text-decoration: underline;
+        }
+
+        /* Button */
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary-blue);
+            color: var(--text-white);
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn:hover:not(:disabled) {
+            background: var(--primary-blue-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+
+        .login-btn:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-text {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Footer */
+        .login-footer {
+            text-align: center;
+            padding: 0 32px 32px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .signup-link {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .signup-link a:hover {
+            color: var(--primary-blue-dark);
+            text-decoration: underline;
+        }
+
+        /* Demo mode indicator */
+        .demo-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--warning-yellow);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: none;
+        }
+
+        .demo-mode .demo-indicator {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 0;
+                border-radius: 0;
+                min-height: 100vh;
+            }
+
+            .login-header {
+                padding: 60px 24px 20px;
+            }
+
+            .login-form {
+                padding: 0 24px 24px;
+            }
+
+            .login-footer {
+                padding: 0 24px 40px;
+            }
+        }
+
+        /* Demo credentials helper */
+        .demo-credentials {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: var(--border-radius);
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            text-align: center;
+            display: none;
+        }
+
+        .demo-mode .demo-credentials {
+            display: block;
+        }
+
+        .demo-btn {
+            background: var(--warning-yellow);
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+
+        /* Accessibility improvements */
+        .form-input:focus {
+            outline: 2px solid var(--primary-blue);
+            outline-offset: 2px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white !important;
+            }
+
+            .demo-indicator,
+            .demo-credentials,
+            .login-btn {
+                display: none !important;
+            }
+
+            .login-container {
+                box-shadow: none !important;
+                border: 1px solid #000 !important;
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-gradient-primary">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-10 col-lg-12 col-md-9">
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <div class="row">
-                            <!-- Imagen lateral -->
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h2 text-white mb-4">¡Bienvenido de vuelta!</h1>
-                                        <p class="text-white-50">Accede a tu cuenta para gestionar tus reservas</p>
-                                        <i class="fas fa-calendar-check fa-3x text-white-50 mt-4"></i>
-                                    </div>
-                                </div>
-                            </div>
+<body>
+    <!-- Login Container -->
+    <div class="login-container" id="loginContainer">
+        <!-- Demo Indicator -->
+        <div class="demo-indicator">Demo</div>
 
-                            <!-- Formulario -->
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Iniciar Sesión</h1>
-                                    </div>
+        <!-- Header -->
+        <div class="login-header">
+            <a href="/" class="logo">
+                <div class="logo-icon">📋</div>
+                <span class="logo-text">ReservaFácil</span>
+            </a>
+            <h1 class="login-title">Bienvenido de vuelta</h1>
+            <p class="login-subtitle">Ingresa a tu cuenta para gestionar tu negocio</p>
+        </div>
 
-                                    <form class="user secure-form" action="../api/auth.php" method="POST">
-                                        <input type="hidden" name="action" value="login">
-                                        <input type="hidden" name="csrf_token" value="">
+        <!-- Form -->
+        <form class="login-form" id="loginForm" data-auth="login" novalidate>
+            <!-- Demo credentials helper -->
+            <div class="demo-credentials">
+                <div>📧 <strong>Demo:</strong> demo@reservafacil.com</div>
+                <div>🔑 <strong>Pass:</strong> demo123456</div>
+                <button type="button" class="demo-btn" onclick="fillDemoCredentials()">
+                    Llenar automáticamente
+                </button>
+            </div>
 
-                                        <div class="form-group mb-3">
-                                            <div class="input-group">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-envelope"></i>
-                                                </span>
-                                                <input type="email" class="form-control form-control-user" name="email"
-                                                    placeholder="Ingresa tu email..." data-validate="email" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group mb-3">
-                                            <div class="input-group">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-lock"></i>
-                                                </span>
-                                                <input type="password" class="form-control form-control-user"
-                                                    name="password" placeholder="Contraseña" data-validate="required"
-                                                    required>
-                                                <button class="btn btn-outline-secondary toggle-password" type="button">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group mb-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="remember_me"
-                                                    id="rememberMe">
-                                                <label class="form-check-label" for="rememberMe">
-                                                    Recordarme
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <button type="submit" class="btn btn-primary btn-user btn-block w-100"
-                                            data-original-text="Iniciar Sesión">
-                                            Iniciar Sesión
-                                        </button>
-
-                                        <hr>
-
-                                        <div class="text-center">
-                                            <a class="small" href="forgot-password.html">¿Olvidaste tu contraseña?</a>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="small" href="register.html">¡Crear una cuenta!</a>
-                                        </div>
-                                    </form>
-
-                                    <!-- Demo credentials -->
-                                    <div class="mt-4 p-3 bg-light rounded">
-                                        <small class="text-muted">
-                                            <strong>Demo:</strong><br>
-                                            Email: demo@reservas.com<br>
-                                            Contraseña: Demo123!
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <div class="form-input-container">
+                    <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required
+                        autocomplete="email">
+                    <i class="fas fa-envelope input-icon"></i>
                 </div>
             </div>
+
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password" class="form-label">Contraseña</label>
+                <div class="form-input-container">
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Tu contraseña"
+                        required autocomplete="current-password">
+                    <i class="fas fa-lock input-icon"></i>
+                    <button type="button" class="password-toggle" id="passwordToggle">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Remember & Forgot -->
+            <div class="remember-forgot">
+                <label class="remember-me">
+                    <div class="checkbox">
+                        <input type="checkbox" id="rememberMe" name="remember">
+                        <span class="checkmark"></span>
+                    </div>
+                    <span class="remember-label">Recordarme</span>
+                </label>
+                <a href="forgot-password.html" class="forgot-link">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="login-btn" id="loginBtn">
+                <span class="btn-text">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Iniciar Sesión
+                </span>
+            </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="login-footer">
+            <p class="signup-link">
+                ¿No tienes una cuenta?
+                <a href="register.html">Registra tu negocio gratis</a>
+            </p>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Secure Forms JS -->
-    <script src="../assets/js/secure-forms.js"></script>
+    <!-- Auth System -->
+    <script src="/assets/js/auth.js"></script>
 
+    <!-- Page-specific JavaScript -->
     <script>
-        // Redirección después del login exitoso
+        // Configuración específica de la página de login
         document.addEventListener('DOMContentLoaded', function () {
-            // Generar token CSRF simple para demo
-            const csrfToken = 'demo_token_' + Math.random().toString(36).substring(7);
-            document.querySelector('meta[name="csrf-token"]').setAttribute('content', csrfToken);
-            document.querySelector('input[name="csrf_token"]').value = csrfToken;
+            // Detectar modo demo
+            const isDemo = window.location.hostname === 'localhost' ||
+                window.location.hostname.includes('demo') ||
+                window.location.search.includes('demo=true');
 
-            const forms = document.querySelectorAll('.secure-form');
-            forms.forEach(form => {
-                form.addEventListener('submit', async function (e) {
-                    e.preventDefault();
+            if (isDemo) {
+                document.body.classList.add('demo-mode');
+            }
 
-                    // Simular login exitoso para demo
-                    const formData = new FormData(form);
-                    const email = formData.get('email');
-                    const password = formData.get('password');
+            // Configurar toggle de contraseña
+            const passwordToggle = document.getElementById('passwordToggle');
+            const passwordField = document.getElementById('password');
 
-                    // Mostrar loading
-                    const submitBtn = form.querySelector('button[type="submit"]');
-                    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Iniciando...';
-                    submitBtn.disabled = true;
-
-                    // Simular delay de red
-                    setTimeout(() => {
-                        if (email && password) {
-                            // Mostrar mensaje de éxito
-                            const alertDiv = document.createElement('div');
-                            alertDiv.className = 'alert alert-success alert-dismissible fade show';
-                            alertDiv.innerHTML = `
-                                ¡Login exitoso! Redirigiendo al dashboard...
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            `;
-                            form.insertBefore(alertDiv, form.firstChild);
-
-                            // Simular redirección
-                            setTimeout(() => {
-                                window.location.href = '../dashboard/';
-                            }, 1500);
-                        } else {
-                            // Mostrar error
-                            const alertDiv = document.createElement('div');
-                            alertDiv.className = 'alert alert-danger alert-dismissible fade show';
-                            alertDiv.innerHTML = `
-                                Por favor completa todos los campos
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            `;
-                            form.insertBefore(alertDiv, form.firstChild);
-
-                            submitBtn.innerHTML = 'Iniciar Sesión';
-                            submitBtn.disabled = false;
-                        }
-                    }, 1000);
-                });
+            passwordToggle.addEventListener('click', function () {
+                const icon = this.querySelector('i');
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    passwordField.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
             });
+
+            // Auto-focus en email si está vacío
+            const emailField = document.getElementById('email');
+            if (!emailField.value) {
+                setTimeout(() => emailField.focus(), 100);
+            }
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function (e) {
+                // Ctrl+Shift+D para llenar credenciales demo
+                if (e.ctrlKey && e.shiftKey && e.key === 'D' && isDemo) {
+                    e.preventDefault();
+                    fillDemoCredentials();
+                }
+
+                // Alt+L para enfocar email
+                if (e.altKey && e.key === 'l') {
+                    e.preventDefault();
+                    emailField.focus();
+                }
+
+                // Alt+P para enfocar contraseña
+                if (e.altKey && e.key === 'p') {
+                    e.preventDefault();
+                    passwordField.focus();
+                }
+            });
+
+            // Manejar redirect personalizado si viene de otra página
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirectTo = urlParams.get('redirect');
+
+            if (redirectTo && window.auth) {
+                // Configurar redirect personalizado
+                window.auth.config.redirects.loginSuccess = decodeURIComponent(redirectTo);
+            }
+
+            // Log para debugging
+            if (isDemo) {
+                console.log('🧪 Login en modo demo');
+                console.log('💡 Usa Ctrl+Shift+D para llenar credenciales automáticamente');
+                console.log('💡 Credenciales: demo@reservafacil.com / demo123456');
+            }
+        });
+
+        // Función para llenar credenciales demo
+        function fillDemoCredentials() {
+            document.getElementById('email').value = 'demo@reservafacil.com';
+            document.getElementById('password').value = 'demo123456';
+            document.getElementById('rememberMe').checked = true;
+
+            // Mostrar feedback visual
+            if (window.auth && window.auth.ui) {
+                window.auth.ui.showAlert('Credenciales demo cargadas 🧪', 'info', 2000);
+            }
+        }
+
+        // Analytics tracking (opcional)
+        function trackPageView() {
+            if (window.gtag) {
+                gtag('event', 'page_view', {
+                    page_title: 'Login',
+                    page_location: window.location.href
+                });
+            }
+        }
+
+        // Ejecutar tracking
+        trackPageView();
+
+        // PWA - Registro de Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function (registration) {
+                        console.log('SW registrado:', registration.scope);
+                    })
+                    .catch(function (error) {
+                        console.log('Error registrando SW:', error);
+                    });
+            });
+        }
+
+        // Manejar estados de conexión
+        window.addEventListener('online', function () {
+            if (window.auth && window.auth.ui) {
+                window.auth.ui.showAlert('Conexión restaurada', 'success', 2000);
+            }
+        });
+
+        window.addEventListener('offline', function () {
+            if (window.auth && window.auth.ui) {
+                window.auth.ui.showAlert('Sin conexión a internet', 'warning');
+            }
         });
     </script>
 </body>
