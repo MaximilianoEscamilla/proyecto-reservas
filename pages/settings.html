@@ -1,1 +1,2067 @@
- 
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración - ReservaFácil</title>
+
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../assets/css/main.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #06b6d4;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+
+        .settings-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+            position: relative;
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .settings-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .settings-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--gray-700);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            border-color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .settings-nav {
+            display: flex;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 8px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            overflow-x: auto;
+        }
+
+        .nav-item {
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: max-content;
+        }
+
+        .nav-item.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .nav-item:not(.active):hover {
+            background: var(--gray-100);
+        }
+
+        .settings-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .settings-section {
+            display: none;
+        }
+
+        .settings-section.active {
+            display: block;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gray-900);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-description {
+            color: var(--gray-600);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group-full {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 14px;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .form-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+        }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 16px;
+        }
+
+        .day-schedule {
+            background: var(--gray-50);
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .day-header {
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 12px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .day-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 24px;
+            background: var(--gray-300);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .toggle-switch.active {
+            background: var(--primary-color);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(24px);
+        }
+
+        .time-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .time-input {
+            padding: 8px;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .services-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .service-item {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .service-item:hover {
+            border-color: var(--primary-color);
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .service-info h4 {
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+
+        .service-info p {
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+
+        .service-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-icon {
+            padding: 8px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-edit {
+            background: var(--info-color);
+            color: white;
+        }
+
+        .btn-delete {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .btn-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .service-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .service-detail {
+            text-align: center;
+            padding: 8px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--gray-900);
+            font-size: 14px;
+        }
+
+        .detail-label {
+            color: var(--gray-500);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .alert {
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #f0f9ff;
+            border-left-color: var(--info-color);
+            color: #0c4a6e;
+        }
+
+        .alert-warning {
+            background: #fffbeb;
+            border-left-color: var(--warning-color);
+            color: #92400e;
+        }
+
+        .alert-success {
+            background: #f0fdf4;
+            border-left-color: var(--success-color);
+            color: #166534;
+        }
+
+        .alert-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger-color);
+            color: #991b1b;
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: var(--gray-500);
+        }
+
+        .spinner {
+            border: 3px solid var(--gray-200);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            animation: spin 1s linear infinite;
+            margin-right: 12px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .stats-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .stat-preview {
+            background: var(--gray-50);
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+        }
+
+        .stat-preview-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+
+        .stat-preview-label {
+            font-size: 12px;
+            color: var(--gray-500);
+            text-transform: uppercase;
+        }
+
+        /* Additional responsive improvements */
+        @media (max-width: 768px) {
+            .settings-container {
+                padding: 16px;
+            }
+
+            .settings-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .settings-nav {
+                overflow-x: auto;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .time-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .service-actions {
+                align-self: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .settings-title {
+                font-size: 24px;
+            }
+
+            .section-card {
+                padding: 16px;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            .service-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-preview {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Animation improvements */
+        .settings-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .settings-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-card {
+            transition: all 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Loading state improvements */
+        .btn:disabled,
+        .btn.loading {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn.loading::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 8px;
+        }
+
+        /* Improved form validation styles */
+        .form-input:invalid {
+            border-color: var(--danger-color);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        .form-input:valid {
+            border-color: var(--success-color);
+        }
+
+        /* Better accessibility */
+        .btn:focus,
+        .form-input:focus,
+        .form-select:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Dark mode support (optional) */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --gray-50: #1a1a1a;
+                --gray-100: #2d2d2d;
+                --gray-900: #f9fafb;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+
+            .settings-actions,
+            .btn,
+            .nav-item {
+                display: none !important;
+            }
+
+            .settings-section {
+                display: block !important;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="settings-container">
+        <!-- Header -->
+        <header class="settings-header">
+            <h1 class="settings-title">
+                <i class="fas fa-cog"></i>
+                Configuración
+            </h1>
+
+            <div class="settings-actions">
+                <a href="dashboard.html" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Volver
+                </a>
+                <button class="btn btn-success" id="saveAllBtn">
+                    <i class="fas fa-save"></i>
+                    Guardar Todo
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="settings-nav">
+            <div class="nav-item active" data-section="business">
+                <i class="fas fa-store"></i>
+                Negocio
+            </div>
+            <div class="nav-item" data-section="schedule">
+                <i class="fas fa-clock"></i>
+                Horarios
+            </div>
+            <div class="nav-item" data-section="services">
+                <i class="fas fa-concierge-bell"></i>
+                Servicios
+            </div>
+            <div class="nav-item" data-section="notifications">
+                <i class="fas fa-bell"></i>
+                Notificaciones
+            </div>
+            <div class="nav-item" data-section="calendar">
+                <i class="fas fa-calendar-alt"></i>
+                Calendario
+            </div>
+            <div class="nav-item" data-section="advanced">
+                <i class="fas fa-tools"></i>
+                Avanzado
+            </div>
+        </nav>
+
+        <!-- Content Sections -->
+        <div class="settings-content">
+            <!-- Business Information Section -->
+            <section class="settings-section active" id="business">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div>
+                            <h2 class="section-title">
+                                <i class="fas fa-store"></i>
+                                Información del Negocio
+                            </h2>
+                            <p class="section-description">
+                                Configura la información básica de tu negocio
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="businessName">
+                                Nombre del Negocio <span style="color: var(--danger-color);">*</span>
+                            </label>
+                            <input type="text" id="businessName" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="businessEmail">Email de Contacto</label>
+                            <input type="email" id="businessEmail" class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="businessPhone">Teléfono</label>
+                            <input type="tel" id="businessPhone" class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="businessWebsite">Sitio Web</label>
+                            <input type="url" id="businessWebsite" class="form-input">
+                        </div>
+
+                        <div class="form-group form-group-full">
+                            <label class="form-label" for="businessAddress">Dirección</label>
+                            <input type="text" id="businessAddress" class="form-input">
+                        </div>
+
+                        <div class="form-group form-group-full">
+                            <label class="form-label" for="businessDescription">Descripción</label>
+                            <textarea id="businessDescription" class="form-textarea"
+                                placeholder="Describe tu negocio y servicios..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="timezone">Zona Horaria</label>
+                            <select id="timezone" class="form-select">
+                                <option value="America/Argentina/Buenos_Aires">Argentina (Buenos Aires)</option>
+                                <option value="America/Argentina/Cordoba">Argentina (Córdoba)</option>
+                                <option value="America/Santiago">Chile (Santiago)</option>
+                                <option value="America/Bogota">Colombia (Bogotá)</option>
+                                <option value="Europe/Madrid">España (Madrid)</option>
+                                <option value="America/Mexico_City">México (Ciudad de México)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="currency">Moneda</label>
+                            <select id="currency" class="form-select">
+                                <option value="ARS">Peso Argentino (ARS)</option>
+                                <option value="USD">Dólar Estadounidense (USD)</option>
+                                <option value="EUR">Euro (EUR)</option>
+                                <option value="CLP">Peso Chileno (CLP)</option>
+                                <option value="COP">Peso Colombiano (COP)</option>
+                                <option value="MXN">Peso Mexicano (MXN)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="saveBusinessBtn">
+                        <i class="fas fa-save"></i>
+                        Guardar Información
+                    </button>
+                </div>
+            </section>
+
+            <!-- Schedule Section -->
+            <section class="settings-section" id="schedule">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div>
+                            <h2 class="section-title">
+                                <i class="fas fa-clock"></i>
+                                Horarios de Atención
+                            </h2>
+                            <p class="section-description">
+                                Configura los horarios de funcionamiento de tu negocio
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        Los horarios se aplican a todos los servicios. Puedes crear horarios especiales desde el
+                        calendario.
+                    </div>
+
+                    <div class="time-grid" id="scheduleGrid">
+                        <!-- Los horarios se generarán dinámicamente -->
+                    </div>
+
+                    <div class="form-grid" style="margin-top: 24px;">
+                        <div class="form-group">
+                            <label class="form-label" for="slotDuration">Duración de Slots (minutos)</label>
+                            <select id="slotDuration" class="form-select">
+                                <option value="15">15 minutos</option>
+                                <option value="30">30 minutos</option>
+                                <option value="45">45 minutos</option>
+                                <option value="60">60 minutos</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="bufferTime">Tiempo de Buffer (minutos)</label>
+                            <select id="bufferTime" class="form-select">
+                                <option value="0">Sin buffer</option>
+                                <option value="5">5 minutos</option>
+                                <option value="10">10 minutos</option>
+                                <option value="15">15 minutos</option>
+                                <option value="30">30 minutos</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="maxAdvanceDays">Reservas con anticipación (días)</label>
+                            <input type="number" id="maxAdvanceDays" class="form-input" min="1" max="365" value="90">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="minAdvanceHours">Tiempo mínimo anticipación (horas)</label>
+                            <input type="number" id="minAdvanceHours" class="form-input" min="0" max="72" value="2">
+                        </div>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="allowBackToBack">
+                        <label for="allowBackToBack">Permitir citas consecutivas (sin buffer)</label>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="autoConfirmBookings">
+                        <label for="autoConfirmBookings">Auto-confirmar reservas</label>
+                    </div>
+
+                    <button class="btn btn-primary" id="saveScheduleBtn">
+                        <i class="fas fa-save"></i>
+                        Guardar Horarios
+                    </button>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section class="settings-section" id="services">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div>
+                            <h2 class="section-title">
+                                <i class="fas fa-concierge-bell"></i>
+                                Gestión de Servicios
+                            </h2>
+                            <p class="section-description">
+                                Administra los servicios que ofreces y sus configuraciones
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        Puedes crear diferentes servicios con duraciones y precios específicos.
+                    </div>
+
+                    <div style="margin-bottom: 24px;">
+                        <button class="btn btn-primary" id="addServiceBtn">
+                            <i class="fas fa-plus"></i>
+                            Nuevo Servicio
+                        </button>
+                    </div>
+
+                    <div class="services-list" id="servicesList">
+                        <!-- Los servicios se cargarán dinámicamente -->
+                        <div class="service-item">
+                            <div class="service-header">
+                                <div class="service-info">
+                                    <h4>Consulta General</h4>
+                                    <p>Consulta médica general y revisión de salud</p>
+                                </div>
+                                <div class="service-actions">
+                                    <button class="btn-icon btn-edit" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" title="Eliminar">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="service-details">
+                                <div class="service-detail">
+                                    <div class="detail-value">45 min</div>
+                                    <div class="detail-label">Duración</div>
+                                </div>
+                                <div class="service-detail">
+                                    <div class="detail-value">$2,500</div>
+                                    <div class="detail-label">Precio</div>
+                                </div>
+                                <div class="service-detail">
+                                    <div class="detail-value">Activo</div>
+                                    <div class="detail-label">Estado</div>
+                                </div>
+                                <div class="service-detail">
+                                    <div class="detail-value">25</div>
+                                    <div class="detail-label">Reservas</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="service-detail">
+                            <div class="detail-value">60 min</div>
+                            <div class="detail-label">Duración</div>
+                        </div>
+                        <div class="service-detail">
+                            <div class="detail-value">$4,000</div>
+                            <div class="detail-label">Precio</div>
+                        </div>
+                        <div class="service-detail">
+                            <div class="detail-value">Activo</div>
+                            <div class="detail-label">Estado</div>
+                        </div>
+                        <div class="service-detail">
+                            <div class="detail-value">12</div>
+                            <div class="detail-label">Reservas</div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="stats-preview">
+            <div class="stat-preview">
+                <div class="stat-preview-value">2</div>
+                <div class="stat-preview-label">Servicios Activos</div>
+            </div>
+            <div class="stat-preview">
+                <div class="stat-preview-value">$3,250</div>
+                <div class="stat-preview-label">Precio Promedio</div>
+            </div>
+            <div class="stat-preview">
+                <div class="stat-preview-value">52 min</div>
+                <div class="stat-preview-label">Duración Promedio</div>
+            </div>
+            <div class="stat-preview">
+                <div class="stat-preview-value">37</div>
+                <div class="stat-preview-label">Total Reservas</div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Notifications Section -->
+    <section class="settings-section" id="notifications">
+        <div class="section-card">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">
+                        <i class="fas fa-bell"></i>
+                        Configuración de Notificaciones
+                    </h2>
+                    <p class="section-description">
+                        Personaliza cómo y cuándo recibir notificaciones
+                    </p>
+                </div>
+            </div>
+
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                Asegúrate de configurar correctamente las notificaciones para no perder reservas importantes.
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group form-group-full">
+                    <h3 style="margin-bottom: 16px; color: var(--gray-800);">Notificaciones Email</h3>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="emailNewBooking" checked>
+                        <label for="emailNewBooking">Nueva reserva recibida</label>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="emailCancelBooking" checked>
+                        <label for="emailCancelBooking">Reserva cancelada</label>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="emailModifyBooking">
+                        <label for="emailModifyBooking">Reserva modificada</label>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="emailDailyReport">
+                        <label for="emailDailyReport">Reporte diario de citas</label>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="emailReminders" checked>
+                        <label for="emailReminders">Recordatorios de citas próximas</label>
+                    </div>
+                </div>
+
+                <div class="form-group form-group-full">
+                    <h3 style="margin-bottom: 16px; color: var(--gray-800);">Recordatorios Automáticos</h3>
+
+                    <div class="form-group">
+                        <label class="form-label" for="reminderTime1">Primer recordatorio</label>
+                        <select id="reminderTime1" class="form-select">
+                            <option value="0">Desactivado</option>
+                            <option value="1">1 hora antes</option>
+                            <option value="2">2 horas antes</option>
+                            <option value="24" selected>24 horas antes</option>
+                            <option value="48">48 horas antes</option>
+                            <option value="168">1 semana antes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="reminderTime2">Segundo recordatorio</label>
+                        <select id="reminderTime2" class="form-select">
+                            <option value="0">Desactivado</option>
+                            <option value="1" selected>1 hora antes</option>
+                            <option value="2">2 horas antes</option>
+                            <option value="24">24 horas antes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group form-group-full">
+                    <h3 style="margin-bottom: 16px; color: var(--gray-800);">WhatsApp (Próximamente)</h3>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="whatsappEnabled" disabled>
+                        <label for="whatsappEnabled">Activar notificaciones por WhatsApp</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="whatsappNumber">Número de WhatsApp Business</label>
+                        <input type="tel" id="whatsappNumber" class="form-input" disabled
+                            placeholder="+54 9 11 xxxx-xxxx">
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="saveNotificationsBtn">
+                <i class="fas fa-save"></i>
+                Guardar Notificaciones
+            </button>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section class="settings-section" id="calendar">
+        <div class="section-card">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">
+                        <i class="fas fa-calendar-alt"></i>
+                        Configuración del Calendario
+                    </h2>
+                    <p class="section-description">
+                        Personaliza la vista y comportamiento del calendario
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label" for="defaultView">Vista por defecto</label>
+                    <select id="defaultView" class="form-select">
+                        <option value="week" selected>Semanal</option>
+                        <option value="month">Mensual</option>
+                        <option value="day">Diaria</option>
+                        <option value="agenda">Agenda</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="weekStart">Primer día de la semana</label>
+                    <select id="weekStart" class="form-select">
+                        <option value="0">Domingo</option>
+                        <option value="1" selected>Lunes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="timeFormat">Formato de hora</label>
+                    <select id="timeFormat" class="form-select">
+                        <option value="24" selected>24 horas (14:30)</option>
+                        <option value="12">12 horas (2:30 PM)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="calendarLanguage">Idioma del calendario</label>
+                    <select id="calendarLanguage" class="form-select">
+                        <option value="es" selected>Español</option>
+                        <option value="en">English</option>
+                        <option value="pt">Português</option>
+                    </select>
+                </div>
+
+                <div class="form-group form-group-full">
+                    <h3 style="margin-bottom: 16px; color: var(--gray-800);">Opciones de Visualización</h3>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="showWeekends" checked>
+                        <label for="showWeekends">Mostrar fines de semana</label>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="showEventDetails" checked>
+                        <label for="showEventDetails">Mostrar detalles en eventos</label>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="allowDragDrop" checked>
+                        <label for="allowDragDrop">Permitir arrastrar y soltar citas</label>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="showCancelledEvents">
+                        <label for="showCancelledEvents">Mostrar citas canceladas</label>
+                    </div>
+                </div>
+
+                <div class="form-group form-group-full">
+                    <h3 style="margin-bottom: 16px; color: var(--gray-800);">Colores del Calendario</h3>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                        <div class="form-group">
+                            <label class="form-label" for="confirmedColor">Citas confirmadas</label>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <input type="color" id="confirmedColor" value="#10b981"
+                                    style="width: 40px; height: 40px; border: none; border-radius: 4px;">
+                                <span style="color: var(--gray-600);">#10b981</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="pendingColor">Citas pendientes</label>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <input type="color" id="pendingColor" value="#f59e0b"
+                                    style="width: 40px; height: 40px; border: none; border-radius: 4px;">
+                                <span style="color: var(--gray-600);">#f59e0b</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="cancelledColor">Citas canceladas</label>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <input type="color" id="cancelledColor" value="#ef4444"
+                                    style="width: 40px; height: 40px; border: none; border-radius: 4px;">
+                                <span style="color: var(--gray-600);">#ef4444</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="blockedColor">Horarios bloqueados</label>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <input type="color" id="blockedColor" value="#6b7280"
+                                    style="width: 40px; height: 40px; border: none; border-radius: 4px;">
+                                <span style="color: var(--gray-600);">#6b7280</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="saveCalendarBtn">
+                <i class="fas fa-save"></i>
+                Guardar Configuración
+            </button>
+        </div>
+    </section>
+
+    <!-- Advanced Section -->
+    <section class="settings-section" id="advanced">
+        <div class="section-card">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">
+                        <i class="fas fa-tools"></i>
+                        Configuración Avanzada
+                    </h2>
+                    <p class="section-description">
+                        Opciones avanzadas y mantenimiento del sistema
+                    </p>
+                </div>
+            </div>
+
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>Precaución:</strong> Estas configuraciones pueden afectar el funcionamiento del sistema. Úsalas
+                con cuidado.
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group form-group-full">
+                    <h3 style="margin-bottom: 16px; color: var(--gray-800);">Seguridad y Acceso</h3>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="enableTwoFactor">
+                        <label for="enableTwoFactor">Activar autenticación de dos factores</label>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="requireEmailConfirmation" checked>
+                        <label for="requireEmailConfirmation">Requerir confirmación por email para nuevas
+                            reservas</label>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="allowGuestBookings" checked>
+                        <label for="allowGuestBookings">Permitir reservas sin registro</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="sessionTimeout">Tiempo de sesión (minutos)</label>
+                        <input type="number" id="sessionTimeout" class="form-input" value="60" min="30" max="480">
+                    </div>
+                </div>
+
+                <div class="form-group form-group-full">
+                    <h3 style="margin-bottom: 16px; color: var(--gray-800);">Integración y API</h3>
+
+                    <div class="form-group">
+                        <label class="form-label" for="apiKey">Clave API (Solo lectura)</label>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="text" id="apiKey" class="form-input" value="rf_sk_live_123456789abcdef"
+                                readonly>
+                            <button class="btn btn-secondary" id="regenerateApiKey">
+                                <i class="fas fa-sync"></i>
+                                Regenerar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="enableWebhooks">
+                        <label for="enableWebhooks">Activar webhooks</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="webhookUrl">URL del Webhook</label>
+                        <input type="url" id="webhookUrl" class="form-input"
+                            placeholder="https://tudominio.com/webhook">
+                    </div>
+                </div>
+
+                <div class="form-group form-group-full">
+                    <h3 style="margin-bottom: 16px; color: var(--gray-800);">Mantenimiento y Datos</h3>
+
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px;">
+                        <button class="btn btn-secondary" id="exportDataBtn">
+                            <i class="fas fa-download"></i>
+                            Exportar Datos
+                        </button>
+
+                        <button class="btn btn-secondary" id="backupBtn">
+                            <i class="fas fa-shield-alt"></i>
+                            Crear Respaldo
+                        </button>
+
+                        <button class="btn btn-warning" id="clearCacheBtn">
+                            <i class="fas fa-broom"></i>
+                            Limpiar Caché
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="dataRetentionDays">Retención de datos (días)</label>
+                        <select id="dataRetentionDays" class="form-select">
+                            <option value="365">1 año</option>
+                            <option value="730" selected>2 años</option>
+                            <option value="1095">3 años</option>
+                            <option value="1825">5 años</option>
+                            <option value="-1">Indefinido</option>
+                        </select>
+                    </div>
+
+                    <div class="alert alert-warning" style="margin-top: 16px;">
+                        <i class="fas fa-info-circle"></i>
+                        Último respaldo: 28 de Julio, 2025 - 14:30
+                    </div>
+                </div>
+
+                <div class="form-group form-group-full">
+                    <h3 style="margin-bottom: 16px; color: var(--danger-color);">Zona de Peligro</h3>
+
+                    <div
+                        style="border: 2px solid var(--danger-color); border-radius: 8px; padding: 20px; background: #fef2f2;">
+                        <p style="color: var(--danger-color); margin-bottom: 16px; font-weight: 600;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Estas acciones no se pueden deshacer
+                        </p>
+
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                            <button class="btn btn-secondary" id="resetSettingsBtn">
+                                <i class="fas fa-undo"></i>
+                                Restablecer Configuración
+                            </button>
+
+                            <button class="btn" style="background: var(--danger-color); color: white;"
+                                id="deleteAllDataBtn">
+                                <i class="fas fa-trash-alt"></i>
+                                Eliminar Todos los Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="saveAdvancedBtn">
+                <i class="fas fa-save"></i>
+                Guardar Configuración Avanzada
+            </button>
+        </div>
+    </section>
+    </div>
+    </div>
+
+    <!-- Loading Modal -->
+    <div id="loadingModal"
+        style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 40px; border-radius: 12px; text-align: center;">
+            <div class="spinner"></div>
+            <p>Guardando configuración...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Navigation between sections
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function () {
+                // Remove active class from all nav items and sections
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                document.querySelectorAll('.settings-section').forEach(section => section.classList.remove('active'));
+
+                // Add active class to clicked nav item
+                this.classList.add('active');
+
+                // Show corresponding section
+                const sectionId = this.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+
+        // Generate schedule grid
+        function generateScheduleGrid() {
+            const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+            const scheduleGrid = document.getElementById('scheduleGrid');
+
+            days.forEach((day, index) => {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'day-schedule';
+                dayDiv.innerHTML = `
+                    <div class="day-header">${day}</div>
+                    <div class="day-toggle">
+                        <div class="toggle-switch ${index < 5 ? 'active' : ''}" data-day="${index}">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                    <div class="time-inputs" ${index >= 5 ? 'style="opacity: 0.5;"' : ''}>
+                        <input type="time" class="time-input" value="09:00" ${index >= 5 ? 'disabled' : ''}>
+                        <input type="time" class="time-input" value="17:00" ${index >= 5 ? 'disabled' : ''}>
+                    </div>
+                `;
+                scheduleGrid.appendChild(dayDiv);
+            });
+        }
+
+        // Toggle switches functionality
+        document.addEventListener('click', function (e) {
+            if (e.target.closest('.toggle-switch')) {
+                const toggle = e.target.closest('.toggle-switch');
+                const daySchedule = toggle.closest('.day-schedule');
+                const timeInputs = daySchedule.querySelectorAll('.time-input');
+
+                toggle.classList.toggle('active');
+
+                if (toggle.classList.contains('active')) {
+                    timeInputs.forEach(input => {
+                        input.disabled = false;
+                        daySchedule.querySelector('.time-inputs').style.opacity = '1';
+                    });
+                } else {
+                    timeInputs.forEach(input => {
+                        input.disabled = true;
+                        daySchedule.querySelector('.time-inputs').style.opacity = '0.5';
+                    });
+                }
+            }
+        });
+
+        // Save functions
+        function showLoading() {
+            document.getElementById('loadingModal').style.display = 'flex';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingModal').style.display = 'none';
+        }
+
+        function showAlert(message, type = 'success') {
+            // Create alert element
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'}"></i>
+                ${message}
+            `;
+
+            // Insert at top of first section card
+            const firstCard = document.querySelector('.section-card');
+            firstCard.insertBefore(alert, firstCard.firstChild);
+
+            // Remove after 5 seconds
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
+        // Save business information
+        document.getElementById('saveBusinessBtn').addEventListener('click', function () {
+            showLoading();
+
+            setTimeout(() => {
+                hideLoading();
+                showAlert('Información del negocio guardada correctamente');
+            }, 1500);
+        });
+
+        // Save schedule
+        document.getElementById('saveScheduleBtn').addEventListener('click', function () {
+            showLoading();
+
+            setTimeout(() => {
+                hideLoading();
+                showAlert('Horarios guardados correctamente');
+            }, 1500);
+        });
+
+        // Save notifications
+        document.getElementById('saveNotificationsBtn').addEventListener('click', function () {
+            showLoading();
+
+            setTimeout(() => {
+                hideLoading();
+                showAlert('Configuración de notificaciones guardada');
+            }, 1500);
+        });
+
+        // Save calendar settings
+        document.getElementById('saveCalendarBtn').addEventListener('click', function () {
+            showLoading();
+
+            setTimeout(() => {
+                hideLoading();
+                showAlert('Configuración del calendario guardada');
+            }, 1500);
+        });
+
+        // Save advanced settings
+        document.getElementById('saveAdvancedBtn').addEventListener('click', function () {
+            showLoading();
+
+            setTimeout(() => {
+                hideLoading();
+                showAlert('Configuración avanzada guardada');
+            }, 1500);
+        });
+
+        // Save all settings
+        document.getElementById('saveAllBtn').addEventListener('click', function () {
+            showLoading();
+
+            setTimeout(() => {
+                hideLoading();
+                showAlert('Toda la configuración ha sido guardada correctamente');
+            }, 2000);
+        });
+
+        // Add new service
+        document.getElementById('addServiceBtn').addEventListener('click', function () {
+            showAlert('Funcionalidad de agregar servicio próximamente', 'info');
+        });
+
+        // Advanced actions
+        document.getElementById('regenerateApiKey').addEventListener('click', function () {
+            if (confirm('¿Estás seguro de regenerar la clave API? La clave actual dejará de funcionar.')) {
+                const newKey = 'rf_sk_live_' + Math.random().toString(36).substring(2, 15);
+                document.getElementById('apiKey').value = newKey;
+                showAlert('Nueva clave API generada');
+            }
+        });
+
+        document.getElementById('exportDataBtn').addEventListener('click', function () {
+            showAlert('Exportación de datos iniciada. Recibirás un email cuando esté lista.', 'info');
+        });
+
+        document.getElementById('backupBtn').addEventListener('click', function () {
+            showLoading();
+            setTimeout(() => {
+                hideLoading();
+                showAlert('Respaldo creado correctamente');
+            }, 2000);
+        });
+
+        document.getElementById('clearCacheBtn').addEventListener('click', function () {
+            if (confirm('¿Estás seguro de limpiar el caché? Esto puede afectar temporalmente el rendimiento.')) {
+                showLoading();
+                setTimeout(() => {
+                    hideLoading();
+                    showAlert('Caché limpiado correctamente');
+                }, 1000);
+            }
+        });
+
+        document.getElementById('resetSettingsBtn').addEventListener('click', function () {
+            if (confirm('¿Estás seguro de restablecer toda la configuración a los valores por defecto?')) {
+                showAlert('Configuración restablecida a valores por defecto', 'warning');
+            }
+        });
+
+        document.getElementById('deleteAllDataBtn').addEventListener('click', function () {
+            const confirmation = prompt('Esta acción eliminará TODOS los datos permanentemente. Escribe "ELIMINAR TODO" para confirmar:');
+            if (confirmation === 'ELIMINAR TODO') {
+                showLoading();
+                setTimeout(() => {
+                    hideLoading();
+                    showAlert('Todos los datos han sido eliminados', 'danger');
+                    // En una implementación real, aquí se redirigiría a una página de setup inicial
+                }, 2000);
+            }
+        });
+
+        // Service management functions
+        document.addEventListener('click', function (e) {
+            if (e.target.closest('.btn-edit')) {
+                const serviceItem = e.target.closest('.service-item');
+                const serviceName = serviceItem.querySelector('h4').textContent;
+                showAlert(`Editando servicio: ${serviceName}`, 'info');
+            }
+
+            if (e.target.closest('.btn-delete')) {
+                const serviceItem = e.target.closest('.service-item');
+                const serviceName = serviceItem.querySelector('h4').textContent;
+
+                if (confirm(`¿Estás seguro de eliminar el servicio "${serviceName}"?`)) {
+                    serviceItem.style.transition = 'all 0.3s ease';
+                    serviceItem.style.opacity = '0';
+                    serviceItem.style.transform = 'translateX(-20px)';
+
+                    setTimeout(() => {
+                        serviceItem.remove();
+                        showAlert(`Servicio "${serviceName}" eliminado correctamente`, 'warning');
+                        updateServiceStats();
+                    }, 300);
+                }
+            }
+        });
+
+        function updateServiceStats() {
+            const activeServices = document.querySelectorAll('.service-item').length;
+            document.querySelector('.stat-preview-value').textContent = activeServices;
+        }
+
+        // Load saved data on page load
+        function loadSavedData() {
+            // Simulate loading saved settings
+            const savedData = {
+                businessName: 'Clínica Médica San Rafael',
+                businessEmail: 'contacto@clinicasanrafael.com',
+                businessPhone: '+54 9 351 123-4567',
+                businessWebsite: 'https://www.clinicasanrafael.com',
+                businessAddress: 'Av. Córdoba 1234, Córdoba, Argentina',
+                businessDescription: 'Clínica médica especializada en atención integral de la salud con más de 20 años de experiencia.',
+                timezone: 'America/Argentina/Cordoba',
+                currency: 'ARS'
+            };
+
+            // Populate form fields
+            Object.keys(savedData).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.value = savedData[key];
+                }
+            });
+        }
+
+        // Form validation
+        function validateBusinessForm() {
+            const businessName = document.getElementById('businessName').value.trim();
+            if (!businessName) {
+                showAlert('El nombre del negocio es obligatorio', 'danger');
+                return false;
+            }
+            return true;
+        }
+
+        // Add validation to save buttons
+        document.getElementById('saveBusinessBtn').addEventListener('click', function (e) {
+            if (!validateBusinessForm()) {
+                e.preventDefault();
+                return;
+            }
+        });
+
+        // Color picker functionality
+        document.querySelectorAll('input[type="color"]').forEach(colorInput => {
+            colorInput.addEventListener('change', function () {
+                const colorValue = this.value;
+                const colorDisplay = this.nextElementSibling;
+                if (colorDisplay) {
+                    colorDisplay.textContent = colorValue;
+                }
+            });
+        });
+
+        // Auto-save functionality (optional)
+        let autoSaveTimeout;
+        function setupAutoSave() {
+            document.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(input => {
+                input.addEventListener('input', function () {
+                    clearTimeout(autoSaveTimeout);
+                    autoSaveTimeout = setTimeout(() => {
+                        // Auto-save logic here
+                        console.log('Auto-saving...');
+                    }, 2000);
+                });
+            });
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function (e) {
+            // Ctrl/Cmd + S to save current section
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                const activeSection = document.querySelector('.settings-section.active');
+                const sectionId = activeSection.id;
+
+                const saveButton = activeSection.querySelector('[id*="save"]');
+                if (saveButton) {
+                    saveButton.click();
+                }
+            }
+
+            // Escape to close modals
+            if (e.key === 'Escape') {
+                hideLoading();
+            }
+        });
+
+        // Search functionality within settings
+        function addSearchFunctionality() {
+            // Add search input to header
+            const searchHTML = `
+                <div style="position: relative; max-width: 300px;">
+                    <input type="text" id="settingsSearch" class="form-input" placeholder="Buscar configuración..." style="padding-left: 40px;">
+                    <i class="fas fa-search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                </div>
+            `;
+
+            const actionsDiv = document.querySelector('.settings-actions');
+            actionsDiv.insertAdjacentHTML('afterbegin', searchHTML);
+
+            // Search functionality
+            document.getElementById('settingsSearch').addEventListener('input', function () {
+                const searchTerm = this.value.toLowerCase();
+                const sections = document.querySelectorAll('.settings-section');
+
+                sections.forEach(section => {
+                    const content = section.textContent.toLowerCase();
+                    const navItem = document.querySelector(`[data-section="${section.id}"]`);
+
+                    if (content.includes(searchTerm) || searchTerm === '') {
+                        navItem.style.display = 'flex';
+                    } else {
+                        navItem.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // Export/Import settings functionality
+        function exportSettings() {
+            const settings = {
+                business: {
+                    name: document.getElementById('businessName').value,
+                    email: document.getElementById('businessEmail').value,
+                    phone: document.getElementById('businessPhone').value,
+                    website: document.getElementById('businessWebsite').value,
+                    address: document.getElementById('businessAddress').value,
+                    description: document.getElementById('businessDescription').value,
+                    timezone: document.getElementById('timezone').value,
+                    currency: document.getElementById('currency').value
+                },
+                schedule: {
+                    slotDuration: document.getElementById('slotDuration').value,
+                    bufferTime: document.getElementById('bufferTime').value,
+                    maxAdvanceDays: document.getElementById('maxAdvanceDays').value,
+                    minAdvanceHours: document.getElementById('minAdvanceHours').value
+                },
+                notifications: {
+                    emailNewBooking: document.getElementById('emailNewBooking').checked,
+                    emailCancelBooking: document.getElementById('emailCancelBooking').checked,
+                    reminderTime1: document.getElementById('reminderTime1').value,
+                    reminderTime2: document.getElementById('reminderTime2').value
+                },
+                calendar: {
+                    defaultView: document.getElementById('defaultView').value,
+                    weekStart: document.getElementById('weekStart').value,
+                    timeFormat: document.getElementById('timeFormat').value,
+                    confirmedColor: document.getElementById('confirmedColor').value,
+                    pendingColor: document.getElementById('pendingColor').value
+                }
+            };
+
+            const dataStr = JSON.stringify(settings, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'reservafacil-settings.json';
+            link.click();
+
+            URL.revokeObjectURL(url);
+            showAlert('Configuración exportada correctamente');
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function () {
+            generateScheduleGrid();
+            loadSavedData();
+            setupAutoSave();
+
+
+            // Add export functionality to export button
+            document.getElementById('exportDataBtn').addEventListener('click', exportSettings);
+
+            // Add tooltips (simple implementation)
+            document.querySelectorAll('[title]').forEach(element => {
+                element.addEventListener('mouseenter', function () {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'tooltip';
+                    tooltip.textContent = this.getAttribute('title');
+                    tooltip.style.cssText = `
+                        position: absolute;
+                        background: var(--gray-800);
+                        color: white;
+                        padding: 8px 12px;
+                        border-radius: 6px;
+                        font-size: 12px;
+                        white-space: nowrap;
+                        z-index: 1000;
+                        pointer-events: none;
+                    `;
+                    document.body.appendChild(tooltip);
+
+                    const rect = this.getBoundingClientRect();
+                    tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+                    tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + 'px';
+                });
+
+                element.addEventListener('mouseleave', function () {
+                    const tooltip = document.querySelector('.tooltip');
+                    if (tooltip) tooltip.remove();
+                });
+            });
+
+            // Add smooth scrolling for better UX
+            document.documentElement.style.scrollBehavior = 'smooth';
+
+
+        });
+
+        // Handle page unload - warn about unsaved changes
+        let hasUnsavedChanges = false;
+
+        document.querySelectorAll('.form-input, .form-select, .form-textarea, input[type="checkbox"]').forEach(input => {
+            input.addEventListener('change', function () {
+                hasUnsavedChanges = true;
+            });
+        });
+
+        // Reset unsaved changes flag when saving
+        document.querySelectorAll('[id*="save"]').forEach(button => {
+            button.addEventListener('click', function () {
+                hasUnsavedChanges = false;
+            });
+        });
+
+        window.addEventListener('beforeunload', function (e) {
+            if (hasUnsavedChanges) {
+                e.preventDefault();
+                e.returnValue = '¿Estás seguro de salir? Tienes cambios sin guardar.';
+                return e.returnValue;
+            }
+        });
+
+        // Performance optimization - lazy load sections
+        const observerOptions = {
+            root: null,
+            rootMargin: '50px',
+            threshold: 0.1
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('loaded');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.settings-section').forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Add loading states for better UX
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function () {
+                if (this.id.includes('save')) {
+                    this.style.opacity = '0.7';
+                    this.style.pointerEvents = 'none';
+
+                    setTimeout(() => {
+                        this.style.opacity = '1';
+                        this.style.pointerEvents = 'auto';
+                    }, 1500);
+                }
+            });
+        });
+
+        // Add service modal functionality
+        function createServiceModal() {
+            const modalHTML = `
+                <div id="serviceModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1001; align-items: center; justify-content: center;">
+                    <div style="background: white; padding: 24px; border-radius: 12px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto;">
+                        <h3 style="margin-bottom: 20px; color: var(--gray-900);">
+                            <i class="fas fa-plus-circle"></i>
+                            Nuevo Servicio
+                        </h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="serviceName">Nombre del Servicio</label>
+                            <input type="text" id="serviceName" class="form-input" placeholder="Ej: Consulta General">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="serviceDescription">Descripción</label>
+                            <textarea id="serviceDescription" class="form-textarea" placeholder="Describe el servicio..."></textarea>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div class="form-group">
+                                <label class="form-label" for="serviceDuration">Duración (minutos)</label>
+                                <input type="number" id="serviceDuration" class="form-input" value="30" min="5" max="480">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="servicePrice">Precio</label>
+                                <input type="number" id="servicePrice" class="form-input" placeholder="0" min="0" step="0.01">
+                            </div>
+                        </div>
+                        
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="serviceActive" checked>
+                            <label for="serviceActive">Servicio activo</label>
+                        </div>
+                        
+                        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
+                            <button class="btn btn-secondary" id="cancelServiceBtn">
+                                <i class="fas fa-times"></i>
+                                Cancelar
+                            </button>
+                            <button class="btn btn-primary" id="saveServiceBtn">
+                                <i class="fas fa-save"></i>
+                                Guardar Servicio
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+        }
+
+        // Service modal handlers
+        function showServiceModal() {
+            document.getElementById('serviceModal').style.display = 'flex';
+        }
+
+        function hideServiceModal() {
+            document.getElementById('serviceModal').style.display = 'none';
+            // Clear form
+            document.getElementById('serviceName').value = '';
+            document.getElementById('serviceDescription').value = '';
+            document.getElementById('serviceDuration').value = '30';
+            document.getElementById('servicePrice').value = '';
+            document.getElementById('serviceActive').checked = true;
+        }
+
+        function addNewService() {
+            const name = document.getElementById('serviceName').value.trim();
+            const description = document.getElementById('serviceDescription').value.trim();
+            const duration = document.getElementById('serviceDuration').value;
+            const price = document.getElementById('servicePrice').value;
+            const active = document.getElementById('serviceActive').checked;
+
+            if (!name) {
+                showAlert('El nombre del servicio es obligatorio', 'danger');
+                return;
+            }
+
+            // Create new service item
+            const serviceHTML = `
+                <div class="service-item">
+                    <div class="service-header">
+                        <div class="service-info">
+                            <h4>${name}</h4>
+                            <p>${description || 'Sin descripción'}</p>
+                        </div>
+                        <div class="service-actions">
+                            <button class="btn-icon btn-edit" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon btn-delete" title="Eliminar">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="service-details">
+                        <div class="service-detail">
+                            <div class="detail-value">${duration} min</div>
+                            <div class="detail-label">Duración</div>
+                        </div>
+                        <div class="service-detail">
+                            <div class="detail-value">$${price || '0'}</div>
+                            <div class="detail-label">Precio</div>
+                        </div>
+                        <div class="service-detail">
+                            <div class="detail-value">${active ? 'Activo' : 'Inactivo'}</div>
+                            <div class="detail-label">Estado</div>
+                        </div>
+                        <div class="service-detail">
+                            <div class="detail-value">0</div>
+                            <div class="detail-label">Reservas</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('servicesList').insertAdjacentHTML('beforeend', serviceHTML);
+            updateServiceStats();
+            hideServiceModal();
+            showAlert(`Servicio "${name}" creado correctamente`);
+        }
+
+        // Enhanced initialization
+        document.addEventListener('DOMContentLoaded', function () {
+            // Previous initialization code...
+            generateScheduleGrid();
+            loadSavedData();
+            setupAutoSave();
+            addSearchFunctionality();
+            createServiceModal();
+
+            // Service modal event listeners
+            document.getElementById('addServiceBtn').addEventListener('click', showServiceModal);
+
+            document.addEventListener('click', function (e) {
+                if (e.target.id === 'cancelServiceBtn') {
+                    hideServiceModal();
+                }
+                if (e.target.id === 'saveServiceBtn') {
+                    addNewService();
+                }
+                // Close modal when clicking outside
+                if (e.target.id === 'serviceModal') {
+                    hideServiceModal();
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    hideServiceModal();
+                    hideLoading();
+                }
+            });
+
+            // Add export functionality to export button
+            document.getElementById('exportDataBtn').addEventListener('click', exportSettings);
+
+            // Add tooltips and other initialization...
+            document.querySelectorAll('[title]').forEach(element => {
+                element.addEventListener('mouseenter', function () {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'tooltip';
+                    tooltip.textContent = this.getAttribute('title');
+                    tooltip.style.cssText = `
+                        position: absolute;
+                        background: var(--gray-800);
+                        color: white;
+                        padding: 8px 12px;
+                        border-radius: 6px;
+                        font-size: 12px;
+                        white-space: nowrap;
+                        z-index: 1000;
+                        pointer-events: none;
+                    `;
+                    document.body.appendChild(tooltip);
+
+                    const rect = this.getBoundingClientRect();
+                    tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+                    tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + 'px';
+                });
+
+                element.addEventListener('mouseleave', function () {
+                    const tooltip = document.querySelector('.tooltip');
+                    if (tooltip) tooltip.remove();
+                });
+            });
+
+            // Add smooth scrolling for better UX
+            document.documentElement.style.scrollBehavior = 'smooth';
+
+            // Show welcome message
+            setTimeout(() => {
+                showAlert('Bienvenido a la configuración de ReservaFácil. Aquí puedes personalizar todos los aspectos de tu sistema de reservas.', 'info');
+            }, 500);
+        });
+
+        console.log('ReservaFácil Settings loaded successfully!');
+    </script>
+</body>
+
+</html>

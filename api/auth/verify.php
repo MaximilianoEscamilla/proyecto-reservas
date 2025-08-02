@@ -9,7 +9,7 @@
  */
 
 // Incluir configuración
-require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../../includes/config.php';
 
 /**
  * Clase VerificationManager

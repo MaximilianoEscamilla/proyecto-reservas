@@ -1,1 +1,1219 @@
- 
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario - ReservaFácil</title>
+
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../assets/css/main.css" rel="stylesheet">
+    <link href="../assets/css/calendar.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #06b6d4;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--gray-50);
+            margin: 0;
+            padding: 0;
+        }
+
+        .calendar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .calendar-header {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .calendar-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin: 0;
+        }
+
+        .calendar-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .view-toggle {
+            display: flex;
+            background: var(--gray-100);
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        .view-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .view-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            padding: 10px;
+            border: 1px solid var(--gray-200);
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: var(--gray-50);
+            border-color: var(--primary-color);
+        }
+
+        .date-display {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray-800);
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .calendar-grid {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background: var(--gray-100);
+        }
+
+        .weekday {
+            padding: 16px 12px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--gray-700);
+            border-right: 1px solid var(--gray-200);
+        }
+
+        .weekday:last-child {
+            border-right: none;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            min-height: 600px;
+        }
+
+        .calendar-day {
+            border-right: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 12px;
+            min-height: 120px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            position: relative;
+        }
+
+        .calendar-day:hover {
+            background-color: var(--gray-50);
+        }
+
+        .calendar-day.other-month {
+            background-color: var(--gray-50);
+            color: var(--gray-400);
+        }
+
+        .calendar-day.today {
+            background-color: #eff6ff;
+            border-color: var(--primary-color);
+        }
+
+        .day-number {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .day-events {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .event-item {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .event-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-confirmed {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .event-pending {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .event-completed {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .event-cancelled {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .availability-indicator {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .availability-high {
+            background-color: var(--success-color);
+        }
+
+        .availability-medium {
+            background-color: var(--warning-color);
+        }
+
+        .availability-low {
+            background-color: var(--danger-color);
+        }
+
+        .availability-none {
+            background-color: var(--gray-400);
+        }
+
+        .sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .close-sidebar {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray-500);
+        }
+
+        .sidebar-content {
+            padding: 24px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--gray-500);
+        }
+
+        .spinner {
+            border: 3px solid var(--gray-200);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .quick-actions {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .quick-actions h3 {
+            margin: 0 0 16px 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 10px 16px;
+            border: 1px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .action-btn.primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .action-btn.primary:hover {
+            background: #2563eb;
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            background: var(--success-color);
+        }
+
+        .toast.error {
+            background: var(--danger-color);
+        }
+
+        .toast.warning {
+            background: var(--warning-color);
+        }
+
+        @media (max-width: 768px) {
+            .calendar-container {
+                padding: 12px;
+            }
+
+            .calendar-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 16px;
+            }
+
+            .calendar-controls {
+                justify-content: center;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .calendar-day {
+                min-height: 80px;
+                padding: 8px;
+            }
+
+            .event-item {
+                font-size: 11px;
+                padding: 2px 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calendar-container">
+        <!-- Header del Calendario -->
+        <header class="calendar-header">
+            <h1 class="calendar-title">
+                <i class="fas fa-calendar-alt"></i>
+                Calendario de Reservas
+            </h1>
+
+            <div class="calendar-controls">
+                <!-- Toggle de Vista -->
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="monthly">
+                        <i class="fas fa-calendar"></i>
+                        Mes
+                    </button>
+                    <button class="view-btn" data-view="weekly">
+                        <i class="fas fa-calendar-week"></i>
+                        Semana
+                    </button>
+                    <button class="view-btn" data-view="daily">
+                        <i class="fas fa-calendar-day"></i>
+                        Día
+                    </button>
+                </div>
+
+                <!-- Controles de Navegación -->
+                <div class="nav-controls">
+                    <button class="nav-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="date-display" id="dateDisplay">
+                        Enero 2024
+                    </div>
+                    <button class="nav-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button class="nav-btn" id="todayBtn">
+                        <i class="fas fa-calendar-check"></i>
+                        Hoy
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Grid del Calendario -->
+        <div class="calendar-grid">
+            <!-- Días de la Semana -->
+            <div class="calendar-weekdays">
+                <div class="weekday">Dom</div>
+                <div class="weekday">Lun</div>
+                <div class="weekday">Mar</div>
+                <div class="weekday">Mié</div>
+                <div class="weekday">Jue</div>
+                <div class="weekday">Vie</div>
+                <div class="weekday">Sáb</div>
+            </div>
+
+            <!-- Días del Calendario -->
+            <div class="calendar-days" id="calendarDays">
+                <!-- Los días se generarán dinámicamente con JavaScript -->
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading" id="loadingState" style="display: none;">
+            <div class="spinner"></div>
+            <p>Cargando calendario...</p>
+        </div>
+
+        <!-- Acciones Rápidas -->
+        <div class="quick-actions">
+            <h3><i class="fas fa-bolt"></i> Acciones Rápidas</h3>
+            <div class="action-buttons">
+                <a href="booking.html" class="action-btn primary">
+                    <i class="fas fa-plus"></i>
+                    Nueva Reserva
+                </a>
+                <button class="action-btn" id="refreshBtn">
+                    <i class="fas fa-sync-alt"></i>
+                    Actualizar
+                </button>
+                <button class="action-btn" id="exportBtn">
+                    <i class="fas fa-download"></i>
+                    Exportar
+                </button>
+                <button class="action-btn" id="settingsBtn">
+                    <i class="fas fa-cog"></i>
+                    Configurar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title" id="sidebarTitle">Detalles</h2>
+            <button class="close-sidebar" id="closeSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar-content" id="sidebarContent">
+            <!-- El contenido se cargará dinámicamente -->
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast" id="toast"></div>
+
+    <!-- JavaScript -->
+    <script src="../assets/js/main.js"></script>
+
+    <script>
+        class CalendarManager {
+            constructor() {
+                this.currentView = 'monthly';
+                this.currentDate = new Date();
+                this.events = [];
+                this.availability = {};
+
+                this.initializeElements();
+                this.bindEvents();
+                this.loadCalendar();
+            }
+
+            initializeElements() {
+                this.calendarDays = document.getElementById('calendarDays');
+                this.dateDisplay = document.getElementById('dateDisplay');
+                this.loadingState = document.getElementById('loadingState');
+                this.sidebar = document.getElementById('sidebar');
+                this.sidebarContent = document.getElementById('sidebarContent');
+                this.sidebarTitle = document.getElementById('sidebarTitle');
+                this.toast = document.getElementById('toast');
+            }
+
+            bindEvents() {
+                // View toggle buttons
+                document.querySelectorAll('.view-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        this.switchView(e.target.dataset.view);
+                    });
+                });
+
+                // Navigation buttons
+                document.getElementById('prevBtn').addEventListener('click', () => this.navigatePrevious());
+                document.getElementById('nextBtn').addEventListener('click', () => this.navigateNext());
+                document.getElementById('todayBtn').addEventListener('click', () => this.goToToday());
+
+                // Quick actions
+                document.getElementById('refreshBtn').addEventListener('click', () => this.refreshCalendar());
+                document.getElementById('exportBtn').addEventListener('click', () => this.exportCalendar());
+                document.getElementById('settingsBtn').addEventListener('click', () => this.openSettings());
+
+                // Sidebar
+                document.getElementById('closeSidebar').addEventListener('click', () => this.closeSidebar());
+
+                // ESC key to close sidebar
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.closeSidebar();
+                    }
+                });
+            }
+
+            switchView(view) {
+                this.currentView = view;
+
+                // Update active button
+                document.querySelectorAll('.view-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.view === view);
+                });
+
+                this.loadCalendar();
+            }
+
+            navigatePrevious() {
+                switch (this.currentView) {
+                    case 'monthly':
+                        this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+                        break;
+                    case 'weekly':
+                        this.currentDate.setDate(this.currentDate.getDate() - 7);
+                        break;
+                    case 'daily':
+                        this.currentDate.setDate(this.currentDate.getDate() - 1);
+                        break;
+                }
+                this.loadCalendar();
+            }
+
+            navigateNext() {
+                switch (this.currentView) {
+                    case 'monthly':
+                        this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+                        break;
+                    case 'weekly':
+                        this.currentDate.setDate(this.currentDate.getDate() + 7);
+                        break;
+                    case 'daily':
+                        this.currentDate.setDate(this.currentDate.getDate() + 1);
+                        break;
+                }
+                this.loadCalendar();
+            }
+
+            goToToday() {
+                this.currentDate = new Date();
+                this.loadCalendar();
+            }
+
+            async loadCalendar() {
+                this.showLoading(true);
+
+                try {
+                    // Determinar fechas según la vista
+                    let params = this.getDateParams();
+
+                    // Cargar datos del calendario
+                    const calendarData = await this.fetchCalendarData(params);
+
+                    // Renderizar el calendario
+                    this.renderCalendar(calendarData);
+
+                    // Actualizar display de fecha
+                    this.updateDateDisplay();
+
+                } catch (error) {
+                    console.error('Error loading calendar:', error);
+                    this.showToast('Error al cargar el calendario', 'error');
+                } finally {
+                    this.showLoading(false);
+                }
+            }
+
+            getDateParams() {
+                const year = this.currentDate.getFullYear();
+                const month = this.currentDate.getMonth() + 1;
+                const date = this.currentDate.toISOString().split('T')[0];
+
+                switch (this.currentView) {
+                    case 'monthly':
+                        return { action: 'monthly-view', month, year };
+                    case 'weekly':
+                        return { action: 'weekly-view', date };
+                    case 'daily':
+                        return { action: 'daily-view', date };
+                }
+            }
+
+            async fetchCalendarData(params) {
+                const token = localStorage.getItem('auth_token');
+                const queryString = new URLSearchParams(params).toString();
+
+                const response = await fetch(`../api/calendar/calendar-view.php?${queryString}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.error?.message || 'Error desconocido');
+                }
+
+                return data.data;
+            }
+
+            renderCalendar(data) {
+                if (this.currentView === 'monthly') {
+                    this.renderMonthlyView(data);
+                } else if (this.currentView === 'weekly') {
+                    this.renderWeeklyView(data);
+                } else {
+                    this.renderDailyView(data);
+                }
+            }
+
+            renderMonthlyView(data) {
+                this.calendarDays.innerHTML = '';
+
+                data.days.forEach(day => {
+                    const dayElement = document.createElement('div');
+                    dayElement.className = `calendar-day ${day.is_current_month ? '' : 'other-month'} ${day.is_today ? 'today' : ''}`;
+                    dayElement.dataset.date = day.date;
+
+                    // Número del día
+                    const dayNumber = document.createElement('div');
+                    dayNumber.className = 'day-number';
+                    dayNumber.textContent = day.day_number;
+                    dayElement.appendChild(dayNumber);
+
+                    // Indicador de disponibilidad
+                    if (day.availability && day.availability.is_available) {
+                        const indicator = document.createElement('div');
+                        indicator.className = `availability-indicator ${this.getAvailabilityClass(day.availability_slots)}`;
+                        dayElement.appendChild(indicator);
+                    }
+
+                    // Eventos del día
+                    const eventsContainer = document.createElement('div');
+                    eventsContainer.className = 'day-events';
+
+                    day.events.slice(0, 3).forEach(event => {
+                        const eventElement = document.createElement('div');
+                        eventElement.className = `event-item event-${event.status}`;
+                        eventElement.textContent = `${event.formatted_time} ${event.service_name}`;
+                        eventElement.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            this.showEventDetails(event);
+                        });
+                        eventsContainer.appendChild(eventElement);
+                    });
+
+                    // Mostrar "+X más" si hay más eventos
+                    if (day.events.length > 3) {
+                        const moreEvents = document.createElement('div');
+                        moreEvents.className = 'event-item';
+                        moreEvents.style.backgroundColor = '#f3f4f6';
+                        moreEvents.style.color = '#6b7280';
+                        moreEvents.textContent = `+${day.events.length - 3} más`;
+                        eventsContainer.appendChild(moreEvents);
+                    }
+
+                    dayElement.appendChild(eventsContainer);
+
+                    // Click handler para el día
+                    dayElement.addEventListener('click', () => {
+                        this.showDayDetails(day);
+                    });
+
+                    this.calendarDays.appendChild(dayElement);
+                });
+            }
+
+            renderWeeklyView(data) {
+                // Implementar vista semanal
+                console.log('Weekly view:', data);
+            }
+
+            renderDailyView(data) {
+                // Implementar vista diaria
+                console.log('Daily view:', data);
+            }
+
+            getAvailabilityClass(slotsCount) {
+                if (slotsCount >= 10) return 'availability-high';
+                if (slotsCount >= 5) return 'availability-medium';
+                if (slotsCount >= 1) return 'availability-low';
+                return 'availability-none';
+            }
+
+            updateDateDisplay() {
+                const options = { year: 'numeric', month: 'long' };
+                if (this.currentView === 'daily') {
+                    options.day = 'numeric';
+                }
+                this.dateDisplay.textContent = this.currentDate.toLocaleDateString('es-ES', options);
+            }
+
+            showEventDetails(event) {
+                this.sidebarTitle.textContent = 'Detalles de la Reserva';
+                this.sidebarContent.innerHTML = `
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--gray-900);">
+                            <i class="fas fa-user"></i> ${event.customer_name}
+                        </h4>
+                        <p style="margin: 0; color: var(--gray-600);">${event.customer_email}</p>
+                        <p style="margin: 0; color: var(--gray-600);">${event.customer_phone || 'Sin teléfono'}</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--gray-900);">
+                            <i class="fas fa-calendar"></i> Fecha y Hora
+                        </h4>
+                        <p style="margin: 0; color: var(--gray-600);">${event.date} - ${event.formatted_time}</p>
+                        <p style="margin: 0; color: var(--gray-600);">Duración: ${event.duration_text}</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--gray-900);">
+                            <i class="fas fa-cog"></i> Servicio
+                        </h4>
+                        <p style="margin: 0; color: var(--gray-600);">${event.service_name}</p>
+                        <p style="margin: 0; color: var(--gray-600);">Precio: $${event.total_price}</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--gray-900);">
+                            <i class="fas fa-info-circle"></i> Estado
+                        </h4>
+                        <span class="event-item event-${event.status}" style="display: inline-block; margin: 0;">
+                            ${this.getStatusText(event.status)}
+                        </span>
+                    </div>
+                    
+                    ${event.notes ? `
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--gray-900);">
+                            <i class="fas fa-sticky-note"></i> Notas
+                        </h4>
+                        <p style="margin: 0; color: var(--gray-600);">${event.notes}</p>
+                    </div>
+                    ` : ''}
+                    
+                    <div style="margin-top: 24px; display: flex; gap: 12px;">
+                        <button class="action-btn primary" onclick="calendarManager.editBooking('${event.id}')">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <button class="action-btn" onclick="calendarManager.cancelBooking('${event.id}')">
+                            <i class="fas fa-ban"></i> Cancelar
+                        </button>
+                    </div>
+                `;
+                this.openSidebar();
+            }
+
+            showDayDetails(day) {
+                this.sidebarTitle.textContent = `Día ${day.day_number}`;
+                // Implementar detalles del día
+                this.openSidebar();
+            }
+
+            getStatusText(status) {
+                const statusMap = {
+                    'pending': 'Pendiente',
+                    'confirmed': 'Confirmada',
+                    'completed': 'Completada',
+                    'cancelled': 'Cancelada',
+                    'no_show': 'No asistió'
+                };
+                return statusMap[status] || status;
+            }
+
+            openSidebar() {
+                this.sidebar.classList.add('open');
+            }
+
+            closeSidebar() {
+                this.sidebar.classList.remove('open');
+            }
+
+            showLoading(show) {
+                this.loadingState.style.display = show ? 'block' : 'none';
+                this.calendarDays.style.display = show ? 'none' : 'grid';
+            }
+
+            showToast(message, type = 'success') {
+                this.toast.textContent = message;
+                this.toast.className = `toast ${type} show`;
+
+                setTimeout(() => {
+                    this.toast.classList.remove('show');
+                }, 3000);
+            }
+
+            refreshCalendar() {
+                this.loadCalendar();
+                this.showToast('Calendario actualizado');
+            }
+
+            async exportCalendar() {
+                try {
+                    const token = localStorage.getItem('auth_token');
+                    const response = await fetch('../api/calendar/calendar-view.php?action=export-calendar&format=ical', {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+
+                    const blob = await response.blob();
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'calendario.ics';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+
+                    this.showToast('Calendario exportado correctamente');
+                } catch (error) {
+                    console.error('Error exporting calendar:', error);
+                    this.showToast('Error al exportar calendario', 'error');
+                }
+            }
+
+            openSettings() {
+                this.sidebarTitle.textContent = 'Configuración del Calendario';
+                this.sidebarContent.innerHTML = `
+                    <div style="margin-bottom: 24px;">
+                        <h4 style="margin: 0 0 12px 0; color: var(--gray-900);">
+                            <i class="fas fa-eye"></i> Vista Predeterminada
+                        </h4>
+                        <select id="defaultView" style="width: 100%; padding: 8px; border: 1px solid var(--gray-200); border-radius: 6px;">
+                            <option value="monthly">Vista Mensual</option>
+                            <option value="weekly">Vista Semanal</option>
+                            <option value="daily">Vista Diaria</option>
+                        </select>
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <h4 style="margin: 0 0 12px 0; color: var(--gray-900);">
+                            <i class="fas fa-calendar-week"></i> Inicio de Semana
+                        </h4>
+                        <select id="weekStart" style="width: 100%; padding: 8px; border: 1px solid var(--gray-200); border-radius: 6px;">
+                            <option value="sunday">Domingo</option>
+                            <option value="monday">Lunes</option>
+                        </select>
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <h4 style="margin: 0 0 12px 0; color: var(--gray-900);">
+                            <i class="fas fa-palette"></i> Esquema de Colores
+                        </h4>
+                        <select id="colorScheme" style="width: 100%; padding: 8px; border: 1px solid var(--gray-200); border-radius: 6px;">
+                            <option value="default">Predeterminado</option>
+                            <option value="blue">Azul</option>
+                            <option value="green">Verde</option>
+                            <option value="purple">Morado</option>
+                            <option value="dark">Oscuro</option>
+                        </select>
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <h4 style="margin: 0 0 12px 0; color: var(--gray-900);">
+                            <i class="fas fa-clock"></i> Configuración de Tiempo
+                        </h4>
+                        <label style="display: block; margin-bottom: 8px;">
+                            <input type="number" id="slotDuration" min="15" max="120" step="15" value="30" 
+                                   style="width: 60px; padding: 4px; border: 1px solid var(--gray-200); border-radius: 4px;">
+                            Duración de slots (minutos)
+                        </label>
+                        <label style="display: block; margin-bottom: 8px;">
+                            <input type="number" id="bufferTime" min="0" max="60" step="5" value="15" 
+                                   style="width: 60px; padding: 4px; border: 1px solid var(--gray-200); border-radius: 4px;">
+                            Tiempo de buffer (minutos)
+                        </label>
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <h4 style="margin: 0 0 12px 0; color: var(--gray-900);">
+                            <i class="fas fa-bell"></i> Notificaciones
+                        </h4>
+                        <label style="display: block; margin-bottom: 8px;">
+                            <input type="checkbox" id="autoRefresh" checked>
+                            Actualización automática
+                        </label>
+                        <label style="display: block; margin-bottom: 8px;">
+                            <input type="checkbox" id="soundNotifications">
+                            Notificaciones de sonido
+                        </label>
+                        <label style="display: block; margin-bottom: 8px;">
+                            <input type="checkbox" id="showAvailability" checked>
+                            Mostrar indicadores de disponibilidad
+                        </label>
+                    </div>
+                    
+                    <div style="margin-top: 24px; display: flex; gap: 12px;">
+                        <button class="action-btn primary" onclick="calendarManager.saveSettings()">
+                            <i class="fas fa-save"></i> Guardar
+                        </button>
+                        <button class="action-btn" onclick="calendarManager.resetSettings()">
+                            <i class="fas fa-undo"></i> Restablecer
+                        </button>
+                    </div>
+                `;
+                this.loadCurrentSettings();
+                this.openSidebar();
+            }
+
+            loadCurrentSettings() {
+                // Cargar configuraciones actuales desde localStorage o API
+                const settings = JSON.parse(localStorage.getItem('calendar_settings') || '{}');
+
+                if (document.getElementById('defaultView')) {
+                    document.getElementById('defaultView').value = settings.defaultView || 'monthly';
+                }
+                if (document.getElementById('weekStart')) {
+                    document.getElementById('weekStart').value = settings.weekStart || 'sunday';
+                }
+                if (document.getElementById('colorScheme')) {
+                    document.getElementById('colorScheme').value = settings.colorScheme || 'default';
+                }
+                if (document.getElementById('slotDuration')) {
+                    document.getElementById('slotDuration').value = settings.slotDuration || 30;
+                }
+                if (document.getElementById('bufferTime')) {
+                    document.getElementById('bufferTime').value = settings.bufferTime || 15;
+                }
+                if (document.getElementById('autoRefresh')) {
+                    document.getElementById('autoRefresh').checked = settings.autoRefresh !== false;
+                }
+                if (document.getElementById('soundNotifications')) {
+                    document.getElementById('soundNotifications').checked = settings.soundNotifications || false;
+                }
+                if (document.getElementById('showAvailability')) {
+                    document.getElementById('showAvailability').checked = settings.showAvailability !== false;
+                }
+            }
+
+            async saveSettings() {
+                try {
+                    const settings = {
+                        defaultView: document.getElementById('defaultView').value,
+                        weekStart: document.getElementById('weekStart').value,
+                        colorScheme: document.getElementById('colorScheme').value,
+                        slotDuration: parseInt(document.getElementById('slotDuration').value),
+                        bufferTime: parseInt(document.getElementById('bufferTime').value),
+                        autoRefresh: document.getElementById('autoRefresh').checked,
+                        soundNotifications: document.getElementById('soundNotifications').checked,
+                        showAvailability: document.getElementById('showAvailability').checked
+                    };
+
+                    // Guardar en localStorage
+                    localStorage.setItem('calendar_settings', JSON.stringify(settings));
+
+                    // Enviar a la API
+                    const token = localStorage.getItem('auth_token');
+                    await fetch('../api/calendar/calendar-view.php', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            action: 'update-calendar-config',
+                            config: settings
+                        })
+                    });
+
+                    this.showToast('Configuración guardada correctamente');
+                    this.closeSidebar();
+
+                    // Aplicar configuraciones inmediatamente
+                    this.applySettings(settings);
+
+                } catch (error) {
+                    console.error('Error saving settings:', error);
+                    this.showToast('Error al guardar configuración', 'error');
+                }
+            }
+
+            applySettings(settings) {
+                // Aplicar esquema de colores
+                if (settings.colorScheme) {
+                    document.body.className = `theme-${settings.colorScheme}`;
+                }
+
+                // Recargar calendario si es necesario
+                this.loadCalendar();
+            }
+
+            resetSettings() {
+                localStorage.removeItem('calendar_settings');
+                this.loadCurrentSettings();
+                this.showToast('Configuración restablecida');
+            }
+
+            async editBooking(bookingId) {
+                // Redirigir a página de edición o abrir modal
+                window.location.href = `booking.html?edit=${bookingId}`;
+            }
+
+            async cancelBooking(bookingId) {
+                if (!confirm('¿Estás seguro de que quieres cancelar esta reserva?')) {
+                    return;
+                }
+
+                try {
+                    const token = localStorage.getItem('auth_token');
+                    const response = await fetch('../api/calendar/calendar-view.php', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            action: 'bulk-update-events',
+                            operation: 'update_status',
+                            updates: [{ booking_id: bookingId, status: 'cancelled' }]
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        this.showToast('Reserva cancelada correctamente');
+                        this.closeSidebar();
+                        this.refreshCalendar();
+                    } else {
+                        throw new Error(data.error?.message || 'Error al cancelar');
+                    }
+
+                } catch (error) {
+                    console.error('Error cancelling booking:', error);
+                    this.showToast('Error al cancelar la reserva', 'error');
+                }
+            }
+
+            // Método para manejar errores de autenticación
+            handleAuthError() {
+                localStorage.removeItem('auth_token');
+                window.location.href = 'login.html';
+            }
+
+            // Auto-refresh si está habilitado
+            startAutoRefresh() {
+                const settings = JSON.parse(localStorage.getItem('calendar_settings') || '{}');
+
+                if (settings.autoRefresh !== false) {
+                    setInterval(() => {
+                        this.loadCalendar();
+                    }, 300000); // 5 minutos
+                }
+            }
+        }
+
+        // Inicializar el calendario cuando se carga la página
+        let calendarManager;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Verificar autenticación
+            const token = localStorage.getItem('auth_token');
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Inicializar el calendario
+            calendarManager = new CalendarManager();
+
+            // Configurar auto-refresh
+            calendarManager.startAutoRefresh();
+        });
+
+        // Manejar errores globales
+        window.addEventListener('unhandledrejection', function (event) {
+            console.error('Unhandled promise rejection:', event.reason);
+
+            // Si es un error 401, redirigir al login
+            if (event.reason.message && event.reason.message.includes('401')) {
+                calendarManager.handleAuthError();
+            }
+        });
+
+        // Agregar estilos para temas
+        const themeStyles = `
+            <style>
+                .theme-blue {
+                    --primary-color: #3b82f6;
+                }
+                
+                .theme-green {
+                    --primary-color: #10b981;
+                }
+                
+                .theme-purple {
+                    --primary-color: #8b5cf6;
+                }
+                
+                .theme-dark {
+                    --primary-color: #6366f1;
+                    --gray-50: #1f2937;
+                    --gray-100: #374151;
+                    --gray-200: #4b5563;
+                    --gray-800: #f9fafb;
+                    --gray-900: #ffffff;
+                }
+                
+                .theme-dark body {
+                    background-color: var(--gray-50);
+                    color: var(--gray-900);
+                }
+                
+                .theme-dark .calendar-header,
+                .theme-dark .calendar-grid,
+                .theme-dark .quick-actions,
+                .theme-dark .sidebar {
+                    background-color: var(--gray-100);
+                }
+            </style>
+        `;
+
+        document.head.insertAdjacentHTML('beforeend', themeStyles);
+    </script>
+</body>
+
+</html>
